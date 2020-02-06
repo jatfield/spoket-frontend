@@ -1,0 +1,22 @@
+.modal {
+  display: grid;
+  position: absolute;
+  width: 40em;
+  top: 30%;
+  left: calc(50% - 12em);
+  background-color: white;
+  border: 1px solid grey;
+  box-shadow: 5px 10px 2px rgba(78, 78, 78, 0.3);
+  z-index: 1;
+}
+.modal__footer {
+  display: grid;
+}
+
+.modal__footer__button {
+  display: block;
+  width: 90%;
+  height: 2em;
+  margin: 0.4em;
+  justify-self: center;
+}
