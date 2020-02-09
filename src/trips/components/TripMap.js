@@ -13,7 +13,7 @@ const TripMap = (props) => {
     />
     {trip.spots.map((spot) =>
     <Marker
-      key={spot.location.lng}
+      key={spot.location.lat + spot.location.lng}
       position={[
         spot.location.lat,
         spot.location.lng

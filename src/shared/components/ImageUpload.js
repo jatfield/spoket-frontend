@@ -23,7 +23,7 @@ const ImageUpload = (props) => {
       pickedFile = event.target.files[0];
       setImage(pickedFile);
     }
-    props.onInput(props.id, pickedFile)
+    props.onInput(props.spotLocation, pickedFile)
   }
 
   const pickClickHandler = () => {
@@ -33,7 +33,6 @@ const ImageUpload = (props) => {
   return (
     <div className="file_upload">
       <input 
-        id = {props.id}
         ref = {filePickerRef}
         style = {{display: 'none'}}
         type = "file"

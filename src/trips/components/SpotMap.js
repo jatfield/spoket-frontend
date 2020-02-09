@@ -14,7 +14,6 @@ const SpotMap = (props) => {
       attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     />
     <Marker
-      key={spot.location.lng}
       position={[
         spot.location.lat,
         spot.location.lng
