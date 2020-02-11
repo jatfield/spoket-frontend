@@ -1,30 +1,35 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
-import FacebookLogin from 'react-facebook-login';
+import { useFetch } from '../../hooks/request-hook';
+import FacebookButton from './FacebookButton';
 
 const Auth = (props) => {
 
-  const responseFacebook = (response) => {
-    if (response.expiresIn > 0) {
-      console.log(response.expiresIn);
-      
-      const expiry = new Date(new Date().getTime() + (response.expiresIn * 1000));
-      props.login(true, response.id, expiry, "spoketId");
+  const {sendRequest} = useFetch();
+
+
+  const handleFacebookLogin = async (fbId, expiresIn, fbToken) => {
+    let responseData;
+    try {
+      responseData = await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/riders/${fbId}`);
+      //if not exist, register
+    } catch (error) {
+      console.log(error); 
     }
+    const expiry = new Date(new Date().getTime() + (expiresIn * 1000));
+    props.login(true, fbId, expiry, fbToken, responseData.spoketId);
+    console.log(props.user);
   };
 
-console.log(props.user);
+  const handleFacebookLogout = () => {
+    props.logout()
+  };
 
   return (
-    props.user.isLoggedIn ? 
-    <div onClick = {() => props.logout()}>Logout</div> :
-    <FacebookLogin
-    appId = {process.env.REACT_APP_FB_APPID}
-    fields = "name,email,picture"
-    callback = {responseFacebook} 
-    icon="fa-facebook"
-    textButton= "Bejelentkezés" />
- )
+    <FacebookButton 
+      login = {handleFacebookLogin}
+      logout = {handleFacebookLogout} />
+  )
 };
 
 export default Auth;

@@ -31,6 +31,19 @@
       crossorigin=""
     />
     <title>Spoket</title>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId            : "%REACT_APP_FB_APPID%",
+          autoLogAppEvents : true,
+          xfbml            : true,
+          version          : 'v6.0'
+        });
+        var fbInitEvent = new Event('FBObjectReady');
+        document.dispatchEvent(fbInitEvent);
+      };
+    </script>
+    <script async defer src="https://connect.facebook.net/hu_HU/sdk.js"></script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
