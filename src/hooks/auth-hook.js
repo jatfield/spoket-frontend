@@ -16,7 +16,7 @@ export const useAuth = () => {
 
   useEffect(() => {
     const storedData = JSON.parse(localStorage.getItem('userData'));
-    if (storedData && storedData.fbExpiry > new Date()) login(true, storedData.fbId, storedData.fbExpiry, storedData.fbToken, storedData.spoketId)
+    if (storedData && new Date(storedData.fbExpiry) > new Date()) login(true, storedData.fbId, storedData.fbExpiry, storedData.fbToken, storedData.spoketId)
   }, [login])
 
   return {user, login, logout}

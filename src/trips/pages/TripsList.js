@@ -19,10 +19,13 @@ const Trip = () => {
       } catch (error) {}
     }
     getTrip();
-  }, [sendRequest, setLoadedTrip]);
+  }, [sendRequest]);
 
   const spotClickHandler = (spot) => {
-    if (spotModalShow) hideSpotModal();
+    if (spotModalShow) {
+      hideSpotModal();
+      return;
+    }
     setClickedSpot(spot);
     setSpotModalShow(true);
   }
@@ -41,7 +44,7 @@ const Trip = () => {
       {!isLoading && loadedTrip &&
       <div className = "trip">
         <TripMap trip = {loadedTrip} />
-        {loadedTrip.spots.map((spot) => <div className ="trip__point" onClick = {() => spotClickHandler(spot)}>
+        {loadedTrip.spots.map((spot) => <div className ="trip__point" onClick = {() => spotClickHandler(spot)} key = {spot._id}>
           <h2>{spot.name}</h2>
           </div>)}
       </div>}

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 const FacebookButton = (props) => {
 //fbready to custom hook
-  const [fbStatus, setFbStatus] = useState();
+  const [fbStatus, setFbStatus] = useState("")
   const [fbReady, setFbReady] = useState(false);
 
   useEffect(() => {
@@ -14,19 +14,19 @@ const FacebookButton = (props) => {
 
   useEffect(() => {
     if (fbReady) {
-    window.FB.getLoginStatus((response) => {
-      setFbStatus(response.status);      
-    });    
-
+      window.FB.getLoginStatus((response) => {
+        setFbStatus(response.status);      
+      });    
     }
   }, [fbReady]);
 
   const faceBookLogin = () => {
     window.FB.login((response) => {
       setFbStatus(response.status);      
-      props.login(response.authResponse.userID, response.authResponse.expiresIn, response.authResponse.accessToken);
+      if (response.status === "connected") props.login(response.authResponse.userID, response.authResponse.expiresIn, response.authResponse.accessToken);
     });
   };
+
   const faceBookLogout = () => {
     window.FB.logout((response) => {
       setFbStatus(response.status);      
@@ -35,10 +35,12 @@ const FacebookButton = (props) => {
   };
 
   return (
-    fbReady && fbStatus !== 'connected' ?
-    <div onClick = {faceBookLogin}>Bejelentkezés</div>
-    :
-    <div onClick = {faceBookLogout}>Kijelentkezés</div>
+    <React.Fragment>
+      {(fbStatus === "connected" || props.user.isLoggedIn) &&
+        <div onClick = {faceBookLogout}>Kijelentkezés</div>}
+      {!props.user.isLoggedIn &&
+        <div onClick = {faceBookLogin}>Bejelentkezés</div>}
+    </React.Fragment>
   )
 }
 

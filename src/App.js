@@ -10,22 +10,25 @@ import Auth from './shared/components/Auth';
 function App() {
 
   const {user, login, logout} = useAuth();
-
-  let routes = (          
-    <Switch> {/*so it stops after picking a route*/}      
+  let routes;
+  
+  if (user.isLoggedIn) {          
+    routes = (<Switch> {/*so it stops after picking a route*/}      
       <Route path = "/" exact>
-        <Wheel wId = "5e3c5e94773ac27b33820203"/>
+        <Wheel user = {user}/>
       </Route>
-      <Route path="/meghallgatas/:hearingId" exact>
-      </Route>
-      <Route path="/meghallgatasok/konferenciarogzites" exact>
-      </Route>
-      <Route path="/epuletek/:buildingId/:floorId" exact>
-      </Route>
-      <Route path="/admin" exact>
+      <Route path="/rider/:spoketId" exact>
       </Route>
       <Redirect to="/" />
-    </Switch>)
+    </Switch>);
+   } else {
+    routes = (<Switch> {/*so it stops after picking a route*/}      
+      <Route path = "/" exact>
+        <Trip />
+      </Route>
+      <Redirect to="/" />
+    </Switch>);
+   }
   return (
       <div className = "app__header">
         <div className = "header">

@@ -7,18 +7,15 @@ const Auth = (props) => {
 
   const {sendRequest} = useFetch();
 
-
   const handleFacebookLogin = async (fbId, expiresIn, fbToken) => {
     let responseData;
     try {
-      responseData = await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/riders/${fbId}`);
-      //if not exist, register
+      responseData = await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/riders/byfb/${fbId}`);
     } catch (error) {
       console.log(error); 
     }
     const expiry = new Date(new Date().getTime() + (expiresIn * 1000));
-    props.login(true, fbId, expiry, fbToken, responseData.spoketId);
-    console.log(props.user);
+    props.login(true, fbId, expiry, fbToken, responseData.rider._id);
   };
 
   const handleFacebookLogout = () => {
@@ -28,7 +25,8 @@ const Auth = (props) => {
   return (
     <FacebookButton 
       login = {handleFacebookLogin}
-      logout = {handleFacebookLogout} />
+      logout = {handleFacebookLogout} 
+      user = {props.user}/>
   )
 };
 

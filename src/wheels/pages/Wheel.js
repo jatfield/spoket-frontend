@@ -19,12 +19,12 @@ const Wheel = (props) => {
   useEffect (() => {
     const getWheel = async () => {
       try {
-        const responseData = await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/wheels/${props.wId}`);
+        const responseData = await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/wheels/rider/${props.user.spoketId}`);
         setLoadedWheel(responseData.wheel)
       } catch (error) {}
     }
     getWheel();
-  }, [sendRequest, setLoadedWheel, props.wId]);
+  }, [sendRequest, props.user]);
 
   const spotClickHandler = (spot) => {
     if (spotModalShow) hideSpotModal();
@@ -75,6 +75,8 @@ const Wheel = (props) => {
     </Modal>
     {isLoading && !loadedWheel &&
     <h2>loading...</h2>}
+    {!isLoading && !loadedWheel &&
+    <h2>Fel kéne venni egy túrát!</h2>}
     {!isLoading && loadedWheel &&
     <div className = "trip">
       {loadedWheel.trip.spots.map((spot) => <div className ="trip__point" key = {spot._id}>
