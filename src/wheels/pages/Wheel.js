@@ -5,6 +5,7 @@ import SpotMap from '../../trips/components/SpotMap';
 import Modal from '../../shared/components/Modal';
 import ImageUpload from '../../shared/components/ImageUpload';
 import SpokeMap from '../components/SpokeMap';
+import { NavLink } from 'react-router-dom';
 
 const Wheel = (props) => {
 
@@ -76,7 +77,10 @@ const Wheel = (props) => {
     {isLoading && !loadedWheel &&
     <h2>loading...</h2>}
     {!isLoading && !loadedWheel &&
-    <h2>Fel kéne venni egy túrát!</h2>}
+    <div>
+      <h2>Fel kéne venni egy túrát!</h2>
+      <NavLink to = '/trips'>Túralista</NavLink>
+    </div>}
     {!isLoading && loadedWheel &&
     <div className = "trip">
       {loadedWheel.trip.spots.map((spot) => <div className ="trip__point" key = {spot._id}>

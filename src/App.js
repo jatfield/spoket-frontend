@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Route, Redirect, Switch} from 'react-router-dom
 
 import './App.css';
 import {useAuth} from './hooks/auth-hook'
-import Trip from './trips/pages/TripsList';
+import TripsList from './trips/pages/TripsList';
 import Wheel from './wheels/pages/Wheel';
 import Auth from './shared/components/Auth';
 
@@ -16,6 +16,9 @@ function App() {
     routes = (<Switch> {/*so it stops after picking a route*/}      
       <Route path = "/" exact>
         <Wheel user = {user}/>
+      </Route>   
+      <Route path = "/trips" exact>
+        <TripsList user = {user} />
       </Route>
       <Route path="/rider/:spoketId" exact>
       </Route>
@@ -24,7 +27,7 @@ function App() {
    } else {
     routes = (<Switch> {/*so it stops after picking a route*/}      
       <Route path = "/" exact>
-        <Trip />
+        <TripsList />
       </Route>
       <Redirect to="/" />
     </Switch>);

@@ -1,11 +1,11 @@
 import React from 'react';
 
 import { Map, Marker, TileLayer } from "react-leaflet";
+import './TripMap.css'
 
 const TripMap = (props) => {
   const trip = props.trip;
   return (
-  <div className="spot">
     <Map center={[trip.spots[0].location.lat, trip.spots[0].location.lng]} zoom={10}>
     <TileLayer
       url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -22,7 +22,6 @@ const TripMap = (props) => {
     )}
 
   </Map>
-  </div>
   )
 
 }

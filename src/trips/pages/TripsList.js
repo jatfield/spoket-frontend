@@ -1,55 +1,36 @@
 import React, { useEffect, useState } from 'react';
 
 import {useFetch} from '../../hooks/request-hook'
-import SpotMap from '../components/SpotMap';
-import Modal from '../../shared/components/Modal';
-import TripMap from '../components/TripMap';
+import './TripsList.css'
+import Trip from '../components/Trip';
 
-const Trip = () => {
+const TripsList = (props) => {
   const {isLoading, sendRequest} = useFetch();
-  const [loadedTrip, setLoadedTrip] = useState();
-  const [clickedSpot, setClickedSpot] = useState();
-  const [spotModalShow, setSpotModalShow] = useState(false);
+  const [loadedTrips, setLoadedTrips] = useState();
 
   useEffect (() => {
-    const getTrip = async () => {
+    const getTrips = async () => {
       try {
-        const responseData = await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/trips/first`);
-        setLoadedTrip(responseData.trip)
+        const responseData = await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/trips/`);
+        setLoadedTrips(responseData.trips)
       } catch (error) {}
     }
-    getTrip();
+    getTrips();
   }, [sendRequest]);
-
-  const spotClickHandler = (spot) => {
-    if (spotModalShow) {
-      hideSpotModal();
-      return;
-    }
-    setClickedSpot(spot);
-    setSpotModalShow(true);
-  }
-  const hideSpotModal = () => {
-    setClickedSpot(null)
-    setSpotModalShow(false)
-  }
 
   return (
     <React.Fragment>
-      <Modal show = {spotModalShow} onCancel = {hideSpotModal}>
-        <SpotMap spot = {clickedSpot}/>
-      </Modal>
-      {isLoading && !loadedTrip &&
-      <h2>loading...</h2>}
-      {!isLoading && loadedTrip &&
-      <div className = "trip">
-        <TripMap trip = {loadedTrip} />
-        {loadedTrip.spots.map((spot) => <div className ="trip__point" onClick = {() => spotClickHandler(spot)} key = {spot._id}>
-          <h2>{spot.name}</h2>
+      {isLoading && !loadedTrips && <div>Loading...</div>}
+      {!isLoading && loadedTrips &&<div className = "trips">
+        {loadedTrips.map((trip) => 
+          <div className = "trips__trip">
+            <h2>{trip.name}</h2>
+            <Trip trip = {trip} user = {props.user}/>
           </div>)}
       </div>}
     </React.Fragment>
-  );
+  )
+
 };
 
-export default Trip;
+export default TripsList;
