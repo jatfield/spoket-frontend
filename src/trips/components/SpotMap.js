@@ -10,18 +10,17 @@ const SpotMap = (props) => {
   <div className="spot">{`lat: ${spot.location.lat}, long: ${spot.location.lng}`}
     <div className="spot__map">
       <Map center={[spot.location.lat, spot.location.lng]} zoom={15}>
-
-    <TileLayer
-      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    />
-    <Marker
-      position={[
-        spot.location.lat,
-        spot.location.lng
-      ]}
-    />
-  </Map>
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        />
+        <Marker
+          position={[
+            spot.location.lat,
+            spot.location.lng
+          ]}
+        />
+      </Map>
     </div>
   </div>
   )

@@ -1,6 +1,6 @@
 .modal {
   display: grid;
-  position: absolute;
+  position: fixed;
   width: 40em;
   top: 30%;
   left: calc(50% - 12em);

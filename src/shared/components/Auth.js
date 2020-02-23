@@ -10,7 +10,7 @@ const Auth = (props) => {
   const handleFacebookLogin = async (fbId, expiresIn, fbToken) => {
     let responseData;
     try {
-      responseData = await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/riders/byfb/${fbId}`);
+      responseData = await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/riders/byfb/${fbToken}`);
     } catch (error) {
       console.log(error); 
     }

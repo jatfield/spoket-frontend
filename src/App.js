@@ -6,13 +6,14 @@ import {useAuth} from './hooks/auth-hook'
 import TripsList from './trips/pages/TripsList';
 import Wheel from './wheels/pages/Wheel';
 import Auth from './shared/components/Auth';
+import MessageBox from './shared/components/MessageBox';
 
 function App() {
 
   const {user, login, logout} = useAuth();
   let routes;
   
-  if (user.isLoggedIn) {          
+  if (user) {          
     routes = (<Switch> {/*so it stops after picking a route*/}      
       <Route path = "/" exact>
         <Wheel user = {user}/>
@@ -22,26 +23,27 @@ function App() {
       </Route>
       <Route path="/rider/:spoketId" exact>
       </Route>
-      <Redirect to="/" />
+      <Redirect to="/trips" />
     </Switch>);
    } else {
     routes = (<Switch> {/*so it stops after picking a route*/}      
       <Route path = "/" exact>
-        <TripsList />
+        <TripsList user = {user} />
       </Route>
       <Redirect to="/" />
     </Switch>);
    }
   return (
-      <div className = "app__header">
-        <div className = "header">
+      <div className = "app">
+        <div className = "app__header">
           <h1>Spoket!</h1>
         </div>
         <Router>    
           <div className = "app__navbar">
+            <Auth user = {user} login = {login} logout = {logout} />
+            {user && <MessageBox user = {user} />}
           </div>  
           <div className = "app__main">
-            <Auth user = {user} login = {login} logout = {logout} />
             {routes}
           </div>
           <div className = "app__footer">

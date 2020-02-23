@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 const FacebookButton = (props) => {
 //fbready to custom hook
-  const [fbStatus, setFbStatus] = useState("")
+  const [fbStatus, setFbStatus] = useState("");
   const [fbReady, setFbReady] = useState(false);
 
   useEffect(() => {
@@ -13,7 +13,7 @@ const FacebookButton = (props) => {
   }, []);
 
   useEffect(() => {
-    if (fbReady) {
+    if (fbReady && window.FB) {
       window.FB.getLoginStatus((response) => {
         setFbStatus(response.status);      
       });    
@@ -36,7 +36,7 @@ const FacebookButton = (props) => {
 
   return (
     <React.Fragment>
-      {(fbStatus === "connected" || props.user.isLoggedIn) &&
+      {(fbStatus === "connected" && props.user.isLoggedIn) &&
         <div onClick = {faceBookLogout}>Kijelentkezés</div>}
       {!props.user.isLoggedIn &&
         <div onClick = {faceBookLogin}>Bejelentkezés</div>}

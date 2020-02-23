@@ -2,7 +2,8 @@
   display: grid;
   grid-template-columns: 1fr 4fr;
   grid-template-rows: 8em minmax(600px, 1fr);
-  grid-template-areas:  /* elnevezi a sorokat is "header-start / header-end": header kezdetétől a végéig*/
+  /* elnevezi a sorokat is "header-start / header-end": header kezdetétől a végéig*/
+  grid-template-areas:  
     "header header"
     "navbar main"
     "navbar main"
@@ -13,9 +14,11 @@
 @media (orientation: portrait) { 
   .app {
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 4fr 1fr;
-    grid-template-areas:  /* elnevezi a sorokat is "header-start / header-end": header kezdetétől a végéig*/
-      "logo header"
+    grid-template-rows: 1fr 1fr 1fr 4fr 1fr;
+    /* elnevezi a sorokat is "header-start / header-end": header kezdetétől a végéig*/
+    grid-template-areas:  
+      "logo"
+      "header"
       "navbar"
       "main"
       "footer";

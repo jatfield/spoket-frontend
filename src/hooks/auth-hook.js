@@ -2,7 +2,7 @@ import { useState, useCallback, useEffect } from "react"
 
 export const useAuth = () => {
 
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(false);
 
   const login = useCallback((isLoggedIn, fbId, fbExpiry, fbToken, spoketId) => {
     setUser({isLoggedIn, fbId, fbExpiry, fbToken, spoketId});
@@ -10,7 +10,7 @@ export const useAuth = () => {
   }, []);
 
   const logout = () => {
-    setUser({isLoggedIn: false, fbId: null, fbExpiry: null, fbToken: null, spoketId: null});
+    setUser(false);
     localStorage.removeItem('userData');
   };
 
