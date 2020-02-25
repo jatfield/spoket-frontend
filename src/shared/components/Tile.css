@@ -1,0 +1,9 @@
+.tile {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 4fr 1fr;
+}
+
+.tile__button--active {
+  background-color: green;
+}
