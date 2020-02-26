@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react'
 import { useFetch } from '../../hooks/request-hook';
 import './MessageBox.css';
 import Tile from './Tile';
+import LoadingSpinner from './LoadingSpinner';
 
 const MessageBox = (props) => {
-  const [messages, setMessages] = useState();
+  const [messages, setMessages] = useState(false);
   const [approved, setApproved] = useState([]);
   const [sent, setSent] = useState(0);
   const {isLoading, sendRequest} = useFetch();
@@ -19,7 +20,7 @@ const MessageBox = (props) => {
       }
       setMessages(responseData.ridersToApprove);
     };
-    getMessages();
+    props.user && getMessages();
   }, [sendRequest, props.user, sent]);
 
   const tileButtonHandler = (wheelId) => {
@@ -33,21 +34,21 @@ const MessageBox = (props) => {
       setSent((sent) => ++sent);
     } catch (error) {
       console.log(error);
-      
     }
-  }
+  };
 
   return (
     <React.Fragment>
-      {isLoading && !messages && <div>Loading...</div>}
-      {!isLoading && messages && 
+      {isLoading && !messages && <LoadingSpinner />}
+      {!isLoading && !!messages.length && 
         <div className="messagebox">
         {messages.map((message) => 
           <Tile 
             imageUrl = {message.picture.data.url} 
             imageAlt = {message.name}
             ticked = {!!approved.find((a) => a === message.wheelId)} 
-            tileButtonHandler = {() => tileButtonHandler(message.wheelId)}>
+            tileButtonHandler = {() => tileButtonHandler(message.wheelId)}
+            key = {message.wheelId}>
             <div className = "message">
               {message.name}
               {message.tripName}
@@ -59,6 +60,6 @@ const MessageBox = (props) => {
       
     </React.Fragment>
   )
-}
+};
 
 export default MessageBox;

@@ -13,20 +13,20 @@ function App() {
   const {user, login, logout} = useAuth();
   let routes;
   
-  if (user) {          
+  if (user) {    
     routes = (<Switch> {/*so it stops after picking a route*/}      
       <Route path = "/" exact>
-        <Wheel user = {user}/>
-      </Route>   
-      <Route path = "/trips" exact>
         <TripsList user = {user} />
+      </Route>   
+      <Route path = "/wheels" >
+        <Wheel user = {user}/>
       </Route>
-      <Route path="/rider/:spoketId" exact>
+      <Route path="/rider/:spoketId" >
       </Route>
-      <Redirect to="/trips" />
+      <Redirect to="/" />
     </Switch>);
-   } else {
-    routes = (<Switch> {/*so it stops after picking a route*/}      
+   } else { 
+    routes = (<Switch> {/*so it stops after picking a route*/}    
       <Route path = "/" exact>
         <TripsList user = {user} />
       </Route>
