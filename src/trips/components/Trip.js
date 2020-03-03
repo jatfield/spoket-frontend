@@ -12,9 +12,8 @@ const Trip = (props) => {
   const {sendRequest} = useFetch();
 
   const trip = props.trip;
-  
   let inWheel = !!trip.participants.find((p) => p.rider === props.user.spoketId);
-
+  
   const spotClickHandler = (spot) => {
     if (spotModalShow && clickedSpot === spot) {
       hideSpotModal();

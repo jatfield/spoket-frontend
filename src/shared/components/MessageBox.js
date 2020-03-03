@@ -25,7 +25,6 @@ const MessageBox = (props) => {
 
   const tileButtonHandler = (wheelId) => {
     setApproved(() => approved.find((a) => a === wheelId) ? approved.filter((a) => a !== wheelId) : [...approved, wheelId]);
-    console.log(approved);
   };
 
   const handleMessageBoxSubmit = async () => {

@@ -5,8 +5,9 @@ import { Map, Marker, Polyline, TileLayer } from "react-leaflet";
 import './SpokeMap.css';
 
 const SpokeMap = (props) => {
-  const spotCoords = {lat: props.spotData.lat, lng: props.spotData.lng};
-  const spokeCoords = {lat: props.spokeData.lat, lng: props.spokeData.lng};
+  console.log(props);
+  const spotCoords = {lat: props.spotData.location.lat, lng: props.spotData.location.lng};
+  const spokeCoords = {lat: props.spokeData.spoke.location.lat, lng: props.spokeData.spoke.location.lng};
   const mapRef = useRef();
 
   useEffect (() => {
@@ -15,7 +16,7 @@ const SpokeMap = (props) => {
   }, [mapRef])
 
   return (
-  <div className="spot">{`lat: ${spokeCoords.lat}, long: ${spokeCoords.lng}`}
+  <div className="spot">lat: {spokeCoords.lat}, long: {spokeCoords.lng}, távolság: {props.spokeData.distance}
     <Map ref = {mapRef} center={[spokeCoords.lat, spokeCoords.lng]} zoom={15}>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

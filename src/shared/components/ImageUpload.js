@@ -23,7 +23,7 @@ const ImageUpload = (props) => {
       pickedFile = event.target.files[0];
       setImage(pickedFile);
     }
-    props.onInput(props.spotLocation, pickedFile)
+    props.onInput(props.spot, pickedFile)
   }
 
   const pickClickHandler = () => {
