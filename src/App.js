@@ -32,7 +32,7 @@ function App() {
    } else { 
     routes = (<Switch> {/*so it stops after picking a route*/}    
       <Route path = "/" exact>
-        <TripsList user = {user} />
+        <TripsList />
       </Route>
       <Redirect to="/" />
     </Switch>);
