@@ -56,7 +56,6 @@ const MessageBox = (props) => {
           )}
           <div className="messagebox__submit" onClick = {handleMessageBoxSubmit}>Küldés</div>
         </div>}
-      
     </React.Fragment>
   )
 };

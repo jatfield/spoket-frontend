@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import {useFetch} from '../../hooks/request-hook'
 import './TripsList.css'
 import Trip from '../components/Trip';
+import LoadingSpinner from '../../shared/components/LoadingSpinner';
 
 const TripsList = (props) => {
   const {isLoading, sendRequest} = useFetch();
@@ -20,7 +21,7 @@ const TripsList = (props) => {
 
   return (
     <React.Fragment>
-      {isLoading && !loadedTrips && <div>Loading...</div>}
+      {isLoading && !loadedTrips && <LoadingSpinner />}
       {!isLoading && loadedTrips &&<div className = "trips">
         {loadedTrips.map((trip) => 
           <div className = "trips__trip" key = {trip._id}>

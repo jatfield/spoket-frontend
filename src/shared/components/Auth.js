@@ -10,13 +10,11 @@ const Auth = (props) => {
   const handleFacebookLogin = async (fbId, expiresIn, fbToken) => {
     let responseData;
     try {
-      responseData = await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/riders/byfb/${fbToken}`);
+      responseData = await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/riders/byfb`, 'GET', null, {'Authentication': `token ${fbToken}`});
     } catch (error) {
       console.log(error); 
     }
     const expiry = new Date(new Date().getTime() + (expiresIn * 1000));
-    console.log(expiry);
-    
     props.login(true, fbId, expiry, fbToken, responseData.rider._id);
   };
 
