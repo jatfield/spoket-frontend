@@ -4,6 +4,22 @@
   grid-template-columns: 1fr 4fr 1fr;
 }
 
-.tile__button--active {
-  background-color: green;
+.tile__button {
+  cursor: pointer;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+
+.tile__button--denied {
+  background-color: red;
+}
+
+.tile__button--approved {
+  background-color: rgb(0, 253, 0);
+}
+
+.tile__image img {
+  width: 100px;
+  border-radius: 20%;
 }

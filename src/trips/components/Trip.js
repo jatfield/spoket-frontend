@@ -15,7 +15,7 @@ const Trip = (props) => {
   
   const handleApply = async () => {
     try {
-      await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/trips/application/${trip._id}`, 'POST', null, {'Authentication': `token ${props.user.fbToken}`});
+      await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/wheels/create/${trip._id}`, 'POST', null, {'Authentication': `token ${props.user.fbToken}`});
     } catch (error) {
       
     }

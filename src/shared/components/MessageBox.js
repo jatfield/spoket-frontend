@@ -17,8 +17,8 @@ const MessageBox = (props) => {
         responseData = await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/riders/messages`, 'GET', null, {'Authentication': `token ${props.user.fbToken}`});
       } catch (error) {
         console.log(error);
-      }
-      setMessages(responseData.ridersToApprove);
+      }     
+      setMessages(() => !!responseData.ridersToApprove.length ? {ridersToApprove:responseData.ridersToApprove} : false);
     };
     props.user && getMessages();
   }, [sendRequest, props.user, sent]);
@@ -29,7 +29,9 @@ const MessageBox = (props) => {
 
   const handleMessageBoxSubmit = async () => {
     try {
-      await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/wheels/approval`, 'POST', JSON.stringify({approved}), {'Content-Type':'application/json', 'Authentication': `token ${props.user.fbToken}`});
+      const decided = [];
+      messages.ridersToApprove.map((r) => decided.push(r.wheelId));
+      await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/wheels/approval`, 'POST', JSON.stringify({approved, decided}), {'Content-Type':'application/json', 'Authentication': `token ${props.user.fbToken}`});
       setSent((sent) => ++sent);
     } catch (error) {
       console.log(error);
@@ -39,20 +41,20 @@ const MessageBox = (props) => {
   return (
     <React.Fragment>
       {isLoading && !messages && <LoadingSpinner />}
-      {!isLoading && !!messages.length && 
+      {!isLoading && !!messages.ridersToApprove && 
         <div className="messagebox">
-        {messages.map((message) => 
-          <Tile 
-            imageUrl = {message.picture.data.url} 
-            imageAlt = {message.name}
-            ticked = {!!approved.find((a) => a === message.wheelId)} 
-            tileButtonHandler = {() => tileButtonHandler(message.wheelId)}
-            key = {message.wheelId}>
-            <div className = "message">
-              {message.name}
-              {message.tripName}
-            </div>
-          </Tile>
+          {messages.ridersToApprove.map((rider) => 
+            <Tile 
+              imageUrl = {rider.picture.data.url} 
+              imageAlt = {rider.name}
+              ticked = {!!approved.find((a) => a === rider.wheelId)} 
+              tileButtonHandler = {() => tileButtonHandler(rider.wheelId)}
+              key = {rider.wheelId}>
+              <div className = "message">
+                {rider.name} <br />
+                {rider.tripName}
+              </div>
+            </Tile>
           )}
           <div className="messagebox__submit" onClick = {handleMessageBoxSubmit}>Küldés</div>
         </div>}

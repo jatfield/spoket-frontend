@@ -1,4 +1,4 @@
 .messagebox {
   display: grid;
-  grid-auto-rows: 1fr;
+  border: 1px solid grey;
 }
