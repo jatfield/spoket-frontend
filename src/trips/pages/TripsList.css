@@ -1,4 +1,8 @@
 .trips {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+}
+
+.trips__trip {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
 }

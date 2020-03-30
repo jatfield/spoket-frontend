@@ -24,17 +24,18 @@ const Trip = (props) => {
 
   return (
     <React.Fragment>
+      <div className="trip__name"><h2>{trip.name}</h2></div>
+      <div className="trip__map">
+        <TripMap trip = {trip} />
+      </div>
       <div className = "trip__attributes">
         <div className="trip__attributes__description">{trip.description}</div>
         <div className="trip__attributes__participation">Részvétel: {participation[trip.participation]}</div>
-      </div>
-      {props.user && !inWheel && !applied &&
-        <div className="trip__application">
-          <button name = "apply" onClick = {handleApply}>Jelentkezek</button>
-        </div>
-      }
-      <div className="trip__map">
-        <TripMap trip = {trip} />
+        {props.user && !inWheel && !applied &&
+          <div className="trip__application">
+            <button name = "apply" onClick = {handleApply}>Jelentkezek</button>
+          </div>
+        }
       </div>
     </React.Fragment>
   );

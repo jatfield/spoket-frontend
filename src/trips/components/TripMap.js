@@ -6,7 +6,7 @@ import './TripMap.css'
 const TripMap = (props) => {
   const trip = props.trip;
   return (
-    <Map center={[trip.origin.lat, trip.origin.lng]} zoom={12} maxZoom = {12}>
+    <Map center={[trip.origin.lat, trip.origin.lng]} zoom={12} maxZoom = {12} zoomControl = {false} attributionControl = {false} >
     <TileLayer
       url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
