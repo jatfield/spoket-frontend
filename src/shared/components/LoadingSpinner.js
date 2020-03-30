@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './LoadingSpinner.css';
-import logo from '../images/motorcycle-wheel-png-3.png'
+import logo from '../images/icons8-wheel-96.png'
 
 const LoadingSpinner = () => {
   return (

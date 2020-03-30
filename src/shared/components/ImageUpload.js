@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import './ImageUpload.css'
 
 const ImageUpload = (props) => {
   const [image, setImage] = useState();
@@ -31,18 +32,21 @@ const ImageUpload = (props) => {
   }
 
   return (
-    <div className="file_upload">
-      <input 
-        ref = {filePickerRef}
-        style = {{display: 'none'}}
-        type = "file"
-        accept = ".jpg,.png,.jpeg"
-        onChange = {filePickHandler} />
-      <div className="image_upload__preview">
-        {/*previewUrl && <img src = {previewUrl} alt = "Preview" />*/}
+    <form>
+      <div className="file_upload">
+        <input 
+          ref = {filePickerRef}
+          style = {{display: 'none'}}
+          type = "file"
+          accept = ".jpg,.png,.jpeg"
+          onChange = {filePickHandler} />
+        <div className="image_upload__preview">
+          {previewUrl && <img src = {previewUrl} alt = "Preview" />}
+        </div>
+        <button type = "button" onClick = {pickClickHandler}>Pick image!</button>
       </div>
-      <button type = "button" onClick = {pickClickHandler}>Pick image!</button>
-    </div>
+      <button type = "submit" onClick = {props.onSubmit}>Feltöltöm!</button>
+    </form>
   )
 };
 

@@ -1,3 +1,21 @@
 .wheel {
   display: grid;
+  grid-template-columns: 1fr;
+}
+
+.wheel__tripdata {
+  display: grid;
+}
+
+.wheel__tripdata h2 {
+  cursor: pointer;
+}
+
+.wheel__tripdata__map {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  border: 7px solid black;
+  overflow: hidden;
+  margin: 10px;
 }

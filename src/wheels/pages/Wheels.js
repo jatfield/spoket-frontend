@@ -3,21 +3,19 @@ import React, { useEffect, useState } from 'react';
 import {useFetch} from '../../hooks/request-hook'
 import SpotMap from '../../trips/components/SpotMap';
 import Modal from '../../shared/components/Modal';
-import SpokeMap from '../components/SpokeMap';
 import { NavLink } from 'react-router-dom';
 
-import './Wheels.css'
-import Spots from '../components/Spots';
+import Spokes from '../components/Spokes';
+import TripMap from '../../trips/components/TripMap';
+import './Wheels.css';
 
 const Wheels = (props) => {
 
   const [loadedWheels, setLoadedWheels] = useState();
+  const [expandedWheels, setExpandedWheels] = useState([]);
   const {isLoading, sendRequest} = useFetch();
   const [clickedSpot, setClickedSpot] = useState();
   const [spotModalShow, setSpotModalShow] = useState(false);
-  const [spokeModalShow, setSpokeModalShow] = useState(false);
-  const [upload, setUpload] = useState({});
-  const [imageData, setImageData] = useState({});
 
   useEffect (() => {
     const getWheel = async () => {
@@ -28,6 +26,10 @@ const Wheels = (props) => {
     }
     getWheel();
   }, [sendRequest, props.user]);
+
+  const handleWheelClick = (wheel) => {
+    expandedWheels.find(w => w === wheel) ? setExpandedWheels(expandedWheels.filter((w) => w !== wheel)) : setExpandedWheels([...expandedWheels, wheel]);
+  }
 
   const spotClickHandler = (spot) => {
     if (spotModalShow) hideSpotModal();
@@ -40,40 +42,11 @@ const Wheels = (props) => {
     setSpotModalShow(false)
   }
 
-  const hideSpokeModal = () => {
-    setSpokeModalShow(false)
-  }
-
-  const onImageInput = (spot, image) => {
-    setUpload({spot, image});
-  }
-
-  const uploadImg = async (wheel) => {
-    if (upload.image) {
-    const formData = new FormData();
-    
-    formData.append('image', upload.image);
-    formData.append('spot', JSON.stringify({location: upload.spot.location, _id: upload.spot._id, wheel}));
-      try {
-        const responseData = await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/spokes`, 'POST', formData, {'Authentication': `token ${props.user.fbToken}`});
-        if (responseData.gps === "N/A") {
-          throw new Error("No GPS");
-        }
-        setImageData({spoke: responseData.spoke, distance: responseData.distance});
-        setSpokeModalShow(true);
-      } catch (error) {
-        console.log("Sikertelen képfeldolgozás", error);
-      }
-    }
-  }
 
   return (
     <React.Fragment>
       <Modal show = {spotModalShow} onCancel = {hideSpotModal}>
         <SpotMap spot = {clickedSpot}/>
-      </Modal>
-      <Modal show = {spokeModalShow} onCancel = {hideSpokeModal}>
-        <SpokeMap spokeData = {imageData} spotData = {upload.spot}/>
       </Modal>
       {isLoading && !loadedWheels &&
       <h2>loading...</h2>}
@@ -87,11 +60,11 @@ const Wheels = (props) => {
         {loadedWheels.map((wheel) => 
         <div className="wheel" key = {wheel._id} >
           <div className="wheel__tripdata">
-            {wheel.trip.name}
+            <h2 onClick = {() => handleWheelClick(wheel._id)}>{wheel.trip.name}</h2>
+            <div className="wheel__tripdata__map"><TripMap trip = {wheel.trip} /></div>
           </div>
-          <div className="wheels__spots">
-            <Spots wheel = {wheel} spotClickHandler = {spotClickHandler} onImageInput = {onImageInput} uploadImg = {uploadImg} />
-          </div>
+          {expandedWheels.find(w => w === wheel._id) && 
+            <Spokes wheel = {wheel} spotClickHandler = {spotClickHandler} user = {props.user}/>}
         </div>
         )}
       </div>}

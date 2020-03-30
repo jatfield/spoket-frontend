@@ -37,7 +37,7 @@
 
 .app__main {
   grid-area: main;
-  padding: 2em;
+  width: 100%;
 }
 
 .app__footer {
