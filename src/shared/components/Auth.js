@@ -14,8 +14,7 @@ const Auth = (props) => {
     } catch (error) {
       console.log(error); 
     }
-    const expiry = new Date(new Date().getTime() + (expiresIn * 1000));
-    props.login(true, fbId, expiry, fbToken, responseData.rider._id);
+    props.login(true, fbId, expiresIn, fbToken, responseData.rider._id);
   };
 
   const handleFacebookLogout = () => {

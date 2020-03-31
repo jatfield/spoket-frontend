@@ -5,6 +5,8 @@ import SpokeMap from '../components/SpokeMap';
 import { useState } from 'react';
 import {useFetch} from '../../hooks/request-hook'
 import LoadingSpinner from '../../shared/components/LoadingSpinner';
+import SpotMap from '../../trips/components/SpotMap';
+import Spoke from './Spoke';
 
 const Spokes = (props) => {
 
@@ -14,16 +16,9 @@ const Spokes = (props) => {
   const [upload, setUpload] = useState({});
   const {isLoading, sendRequest} = useFetch();
   const [imageData, setImageData] = useState({});
+  const [clickedSpot, setClickedSpot] = useState();
+  const [spotModalShow, setSpotModalShow] = useState(false);
 
-  const hideSpokeModal = () => {
-    setSpokeModalShow(false);
-    setSpokeToUpload(null);
-    setImageUploadShow(false);
-  }
-
-  const onImageInput = (spot, image) => {
-    setUpload({spot, image});
-  }
 
   const uploadImg = async (wheel) => {
     if (upload.image) {
@@ -44,21 +39,43 @@ const Spokes = (props) => {
     }
   };
 
+  const handleImageUploadClick = (spoke) => {
+    if (imageUploadShow) hideImageUploadModal();
+    setSpokeToUpload(spoke);
+    setImageUploadShow(true);
+  };
+
+  const hideSpokeModal = () => {
+    setSpokeToUpload(null);
+    setImageUploadShow(false);
+    setSpokeModalShow(false);
+  };
+
+  const onImageInput = (spot, image) => {
+    setUpload({spot, image});
+  };
+
   const handleUploadButton = (event) => {
     event.preventDefault();
     uploadImg(props.wheel._id)
   };
 
-  const handleImageUploadClick = (spoke) => {
-    if (imageUploadShow) hideImageUploadModal();
-    setSpokeToUpload(spoke);
-    setImageUploadShow(true);
-  }
-
   const hideImageUploadModal = () => {
     setSpokeToUpload(null);
     setImageUploadShow(false);
-  }
+  };
+
+  const spotClickHandler = (spot) => {
+    if (spotModalShow) hideSpotModal();
+    setClickedSpot(spot);
+    setSpotModalShow(true);
+  };
+
+  const hideSpotModal = () => {
+    setClickedSpot(null);
+    setSpotModalShow(false);
+    hideSpokeModal();
+  };
 
   return (
     <React.Fragment>
@@ -69,12 +86,12 @@ const Spokes = (props) => {
       <Modal show = {spokeModalShow} onCancel = {hideSpokeModal}>
         <SpokeMap spokeData = {imageData} spotData = {upload.spot}/>
       </Modal>
+      <Modal show = {spotModalShow} onCancel = {hideSpotModal}>
+        <SpotMap spot = {clickedSpot}/>
+      </Modal>
     <div className="wheels__spots">
       {props.wheel.trip.spots.map((spot) => 
-        <div className ="trip__point" key = {spot._id}>
-          <h2 onClick = {() => props.spotClickHandler(spot)}>{spot.name}</h2>
-          <p onClick = {() => handleImageUploadClick(spot)}>Feltöltöm a küllőüt!</p>
-        </div>)}
+        <Spoke spot = {spot} wheel = {props.wheel} spotClickHandler = {spotClickHandler} handleImageUploadClick = {handleImageUploadClick} user = {props.user}/>)}
     </div>
 
     </React.Fragment>

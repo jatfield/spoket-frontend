@@ -9,7 +9,7 @@ const FacebookButton = (props) => {
 
   const faceBookLogin = () => {
     window.FB.login((response) => {
-      setFbStatus(response.status);      
+      setFbStatus(response.status);                  
       response.status === "connected" && props.login(response.authResponse.userID, response.authResponse.expiresIn, response.authResponse.accessToken);
     });
   };
