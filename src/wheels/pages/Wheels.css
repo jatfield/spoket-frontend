@@ -1,10 +1,11 @@
 .wheel {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
 }
 
 .wheel__tripdata {
   display: grid;
+  grid-template-rows: 100px;
 }
 
 .wheel__tripdata h2 {
@@ -18,4 +19,9 @@
   border: 7px solid black;
   overflow: hidden;
   margin: 10px;
+}
+
+.wheel__spots {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 }

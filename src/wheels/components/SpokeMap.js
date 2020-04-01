@@ -5,8 +5,8 @@ import { Map, Marker, Polyline, TileLayer } from "react-leaflet";
 import './SpokeMap.css';
 
 const SpokeMap = (props) => {
-  const spotCoords = {lat: props.spotData.location.lat, lng: props.spotData.location.lng};
-  const spokeCoords = {lat: props.spokeData.spoke.location.lat, lng: props.spokeData.spoke.location.lng};
+  const spotCoords = {lat: props.spot.location.lat, lng: props.spot.location.lng};
+  const spokeCoords = {lat: props.spoke.location.lat, lng: props.spoke.location.lng};
   const mapRef = useRef();
 
   useEffect (() => {
@@ -15,9 +15,9 @@ const SpokeMap = (props) => {
   }, [mapRef])
 
   return (
-  <div className="spot">
-    lat: {spokeCoords.lat}, long: {spokeCoords.lng}, távolság: {props.spokeData.distance}, {props.spokeData.spoke.verifiedAt ? 'kép elfogadva' : 'kép túl nagy távolságra készült'}
-    <Map ref = {mapRef} center={[spokeCoords.lat, spokeCoords.lng]} zoom={15}>
+  <div className="spoke__map">
+    lat: {spokeCoords.lat}, long: {spokeCoords.lng} {props.spoke.distance && `távolság: ${props.spoke.distance}`}, {props.spoke.verifiedAt ? 'kép elfogadva' : 'kép túl nagy távolságra készült'}
+    <Map ref = {mapRef} center={[(spokeCoords.lat + spotCoords.lat) / 2, (spokeCoords.lng + spotCoords.lng) / 2]} zoom={700000 / props.spoke.distance}>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
