@@ -33,7 +33,7 @@ const ImageUpload = (props) => {
 
   return (
     <form>
-      <div className="file_upload">
+      <div className="image_upload">
         <input 
           ref = {filePickerRef}
           style = {{display: 'none'}}

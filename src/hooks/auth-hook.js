@@ -16,14 +16,14 @@ export const useAuth = () => {
 
   useEffect(() => {
     const storedData = JSON.parse(localStorage.getItem('userData'));
-    if (storedData && storedData.fbExpiresAt > 0) login(true, storedData.fbId, storedData.fbExpiresAt, storedData.fbToken, storedData.spoketId);
+    
+    if (storedData && new Date(storedData.fbExpiresAt) > new Date()) login(true, storedData.fbId, storedData.fbExpiresAt, storedData.fbToken, storedData.spoketId);
   }, [login])
 
   useEffect (() => {
     let logoutTimer;
-    
     if (user && user.fbExpiresAt) {
-      logoutTimer = setTimeout(logout, user.fbExpiresAt.getTime() - Date.now());            
+      logoutTimer = setTimeout(logout, new Date(user.fbExpiresAt).getTime() - Date.now());            
     } else {
       clearTimeout(logoutTimer);
     }

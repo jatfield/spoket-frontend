@@ -31,7 +31,7 @@ const FacebookButton = (props) => {
   useEffect(() => {
     if (fbReady && window.FB) {
       window.FB.getLoginStatus((response) => {
-        response.status !== "connected" && logout();
+        response.status !== "connected" && logout();        
         setFbStatus(response.status);
       });    
     }

@@ -10,7 +10,7 @@ const SpokeMap = (props) => {
   const mapRef = useRef();
 
   useEffect (() => {
-    console.log(mapRef.current);
+    //console.log(mapRef.current);
     
   }, [mapRef])
 

@@ -1,3 +1,7 @@
+:root {
+  --above-leaflet-z: 701;
+  --above-modal-backdrop-z: 702;
+}
 .app {
   display: grid;
   grid-template-columns: 1fr 4fr;
