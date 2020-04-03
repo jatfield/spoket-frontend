@@ -30,7 +30,8 @@ function App() {
       <Redirect to="/" />
     </Switch>);
    } else { 
-    routes = (<Switch> {/*so it stops after picking a route*/}    
+    routes = (
+    <Switch> {/*so it stops after picking a route*/}    
       <Route path = "/" exact>
         <TripsList />
       </Route>
@@ -40,7 +41,7 @@ function App() {
   return (
       <div className = "app">
         <div className = "app__header">
-          <h1>Spoket!</h1>
+          <h1>Kerékkalandok!</h1>
         </div>
         <Router>    
           <div className = "app__navbar">

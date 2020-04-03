@@ -5,8 +5,15 @@ const Navigation = (props) => {
 
   return (
     <div className="navigation__container">
-      <NavLink to="/trips">Túrák</NavLink>
-      {props.user && <NavLink to="/wheels">Túráim</NavLink>}
+        {props.user && 
+      <ul>
+          <li>
+            <NavLink to="/trips">Kerekek</NavLink>
+          </li>
+          <li>
+            <NavLink to="/wheels">Kalandok</NavLink>
+          </li>
+      </ul>}
     </div>
   )
 
