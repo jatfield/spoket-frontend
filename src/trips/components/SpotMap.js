@@ -6,6 +6,7 @@ import './SpotMap.css';
 
 const SpotMap = (props) => {
   const spot = props.spot;
+  const googleDirectionsLink = `https://www.google.com/maps/dir/?api=1&destination=${spot.location.lat},${spot.location.lng}`
   return (
   <div className="spot">{`lat: ${spot.location.lat}, long: ${spot.location.lng}`}
     <div className="spot__map">
@@ -22,6 +23,7 @@ const SpotMap = (props) => {
         />
       </Map>
     </div>
+    <a href={googleDirectionsLink} target ="_new">Google útvonalterv</a>
   </div>
   )
 
