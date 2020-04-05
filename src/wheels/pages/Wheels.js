@@ -32,7 +32,7 @@ const Wheels = (props) => {
   return (
     <React.Fragment>
       {isLoading && !loadedWheels && <LoadingSpinner />}
-      {!isLoading && !loadedWheels &&
+      {!isLoading && !loadedWheels && 
       <div>
         <h2>Fel kéne venni egy túrát!</h2>
         <NavLink to = '/trips'>Túralista</NavLink>
@@ -41,8 +41,8 @@ const Wheels = (props) => {
       <div className = "wheels">
         {loadedWheels.map((wheel) => 
         <div className="wheel" key = {wheel._id} >
+          <h2 onClick = {() => handleWheelClick(wheel._id)}>{wheel.trip.name}</h2>
           <div className="wheel__tripdata">
-            <h2 onClick = {() => handleWheelClick(wheel._id)}>{wheel.trip.name}</h2>
             <div className="wheel__tripdata__map"><TripMap trip = {wheel.trip} /></div>
           </div>
           {expandedWheels.find(w => w === wheel._id) && 

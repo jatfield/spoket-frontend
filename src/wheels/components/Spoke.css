@@ -1,10 +1,4 @@
 .wheel__spoke {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-}
-
-.spoke__map {
-  grid-column: 1;
-  grid-row: span 2;
+  grid-template-columns: 1fr 2fr;
 }

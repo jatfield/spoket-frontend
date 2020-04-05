@@ -8,8 +8,9 @@
   grid-template-rows: 100px;
 }
 
-.wheel__tripdata h2 {
+.wheel h2 {
   cursor: pointer;
+  grid-column: span 2;
 }
 
 .wheel__tripdata__map {

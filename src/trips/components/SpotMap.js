@@ -8,7 +8,7 @@ const SpotMap = (props) => {
   const spot = props.spot;
   const googleDirectionsLink = `https://www.google.com/maps/dir/?api=1&destination=${spot.location.lat},${spot.location.lng}`
   return (
-  <div className="spot">{`lat: ${spot.location.lat}, long: ${spot.location.lng}`}
+  <div className="spot">
     <div className="spot__map">
       <Map center={[spot.location.lat, spot.location.lng]} zoom={15}>
         <TileLayer

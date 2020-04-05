@@ -88,7 +88,7 @@ const Spot = (props) => {
       <Modal show = {spokeModalShow} onCancel = {hideSpokeModal}>
         <Spoke wheel = {props.wheel} spot = {props.spot} spoke = {spoke} handleImageUploadClick = {handleImageUploadClick} user = {props.user}/>
       </Modal>
-      <Modal show = {spotMapModalShow} onCancel = {hideSpotMapModal}>
+      <Modal show = {spotMapModalShow} onCancel = {hideSpotMapModal} title = {clickedSpot ? clickedSpot.name : ""}>
         <SpotMap spot = {clickedSpot}/>
       </Modal>
       <div className ="wheel__spot" key = {props.spot._id}>

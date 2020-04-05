@@ -2,31 +2,18 @@
   --above-leaflet-z: 701;
   --above-modal-backdrop-z: 702;
 }
+
 .app {
   display: grid;
-  grid-template-columns: 1fr 4fr;
-  grid-template-rows: 8em minmax(600px, 1fr);
+  grid-template-columns: 1fr;
+  grid-template-rows: 5rem 3em 4fr 1fr;
   /* elnevezi a sorokat is "header-start / header-end": header kezdetétől a végéig*/
   grid-template-areas:  
-    "header header"
-    "navbar main"
-    "navbar main"
-    "footer footer";
+    "header"
+    "navbar"
+    "main"
+    "footer";
     justify-items: center;
-}
-
-@media (orientation: portrait) { 
-  .app {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr 4fr 1fr;
-    /* elnevezi a sorokat is "header-start / header-end": header kezdetétől a végéig*/
-    grid-template-areas:  
-      "logo"
-      "header"
-      "navbar"
-      "main"
-      "footer";
-  }
 }
 
 .app__header {
@@ -37,6 +24,8 @@
 
 .app__navbar {
   grid-area: navbar;
+  grid-template-columns: 1fr 1fr;
+  display: grid;
 }
 
 .app__main {

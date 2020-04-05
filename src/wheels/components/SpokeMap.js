@@ -16,7 +16,6 @@ const SpokeMap = (props) => {
 
   return (
   <div className="spoke__map">
-    lat: {spokeCoords.lat}, long: {spokeCoords.lng} {props.spoke.distance && `távolság: ${props.spoke.distance}`}, {props.spoke.verifiedAt ? 'kép elfogadva' : 'kép túl nagy távolságra készült'}
     <Map ref = {mapRef} center={[(spokeCoords.lat + spotCoords.lat) / 2, (spokeCoords.lng + spotCoords.lng) / 2]} zoom={700000 / props.spoke.distance}>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

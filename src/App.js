@@ -45,8 +45,7 @@ function App() {
         </div>
         <Router>    
           <div className = "app__navbar">
-            <Auth user = {user} login = {login} logout = {logout} />
-            <Navigation user = {user} />
+            <Navigation user = {user} login = {login} logout = {logout} />
             {user && <MessageBox user = {user} />}
           </div>  
           <div className = "app__main">
