@@ -1,0 +1,11 @@
+.navigation__container ul {
+  margin: 0rem;
+  padding: 0rem;
+  list-style-type: none;
+}
+
+.navigation__container li {
+  display: block;
+  float: left;
+  padding: 1rem
+}
