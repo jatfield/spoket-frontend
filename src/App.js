@@ -5,7 +5,6 @@ import './App.css';
 import {useAuth} from './hooks/auth-hook'
 import TripsList from './trips/pages/TripsList';
 import Wheels from './wheels/pages/Wheels';
-import Auth from './shared/components/Auth';
 import MessageBox from './shared/components/MessageBox';
 import Navigation from './navigation/pages/Navigation';
 
@@ -46,7 +45,7 @@ function App() {
         <Router>    
           <div className = "app__navbar">
             <Navigation user = {user} login = {login} logout = {logout} />
-            {user && <MessageBox user = {user} />}
+            {/*user && <MessageBox user = {user} />*/}
           </div>  
           <div className = "app__main">
             {routes}

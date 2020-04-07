@@ -29,8 +29,9 @@ const Spoke = (props) => {
             <img src = {spokeImageUrl} alt = {props.spot.name} width = {150}/>
           </div>
           {props.spoke.verifiedAt ? 'kép elfogadva' : 'kép elutasítva: túl messze készült'}, {props.spoke.distance && `távolság: ${(Math.round(props.spoke.distance) * 100)/100} m`}
-          <div className="spoke__uploadlink"><p onClick = {props.handleImageUploadClick}>{spokeImageUrl ? "Új kép" : "Feltöltöm a képet"}</p></div>
+          
         </div>}
+        <div className="spoke__uploadlink"><p onClick = {props.handleImageUploadClick}>{spokeImageUrl ? "Új kép" : "Feltöltöm a képet"}</p></div>
       {props.spoke && <SpokeMap spoke = {props.spoke} spot = {props.spot}/>}
     </div>)
 }
