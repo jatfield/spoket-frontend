@@ -22,19 +22,24 @@ const TripOwner = (props) => {
   }, [sendRequest, props.trip, props.user]);
   
   const handleTripParticipantsClick = () => {
-    if (tripData.trip.participants.length) setShowParticipants(true)
-  }
+    if (tripData.trip.wheels.length) setShowParticipants(true)
+  };
+  
+  const hideParticipants = () => {
+    setShowParticipants(false);
+  };
+
   return (
     <React.Fragment>
-      <Modal show = {showParticipants}>
-        <TripParticipants trip = {props.trip} user = {props.user} />
+      <Modal show = {showParticipants} onCancel = {hideParticipants}>
+        <TripParticipants trip = {props.trip} user = {props.user}/>
       </Modal>
       {isLoading && <LoadingSpinner />}
       {!isLoading && tripData && 
         <div className="trip__tripowner_data" onClick = {handleTripParticipantsClick}>
-          <div className="tripowner_data__participants">Résztvevők: {tripData.trip.participants.reduce((total, participant) => {return participant.approved ? ++total : total},0)}</div>
-          <div className="tripowner_data__riderfinished">Teljesítette: {tripData.ridersFinished.length ? tripData.ridersFinished.map((r) => <div>{!r.fbData.error && r.fbData.name}</div>) : "0"}</div>
-          <div className="tripowner_data__toapprove">Jelentkezők : {tripData.trip.participants.reduce((total, participant) => {return !participant.approved ? ++total : total},0)}</div>
+          <div className="tripowner_data__participants">Résztvevők: {tripData.trip.wheels.reduce((total, wheel) => {return wheel.approvedAt ? ++total : total},0)}</div>
+          <div className="tripowner_data__riderfinished">Teljesítette: {tripData.trip.wheels.reduce((total, wheel) => {return wheel.completedAt ? ++total : total},0)}</div>
+          <div className="tripowner_data__toapprove">Jelentkezők : {tripData.trip.wheels.reduce((total, wheel) => {return !wheel.approvedAt ? ++total : total},0)}</div>
         </div>}
     </React.Fragment>
   )

@@ -45,7 +45,7 @@ const TripParticipants = (props) => {
   return (
     <React.Fragment>
       {isLoading && <LoadingSpinner />}
-      {!isLoading && <div className="trip_riders">
+      {!isLoading && riders && <div className="trip_riders">
         {riders.applicants.length && <div className = "riders"></div>}
         <div className="trip_riders__participants">{riders.participants.map((p) => <Participant participant = {p} key = {p._id}/> )}</div>
       </div>} 
