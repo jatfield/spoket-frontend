@@ -14,7 +14,7 @@ const MessageBox = (props) => {
     const getMessages = async () => {
       let responseData;
       try {
-        responseData = await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/riders/messages`, 'GET', null, {'Authentication': `token ${props.user.fbToken}`});
+        responseData = await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/riders/messages`, 'GET', null, {'Authentication': `token ${props.user.fbToken} id ${props.user.spoketId}`});
       } catch (error) {
         console.log(error);
       }     

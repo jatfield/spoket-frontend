@@ -40,14 +40,18 @@ const Trip = (props) => {
       <div className="trip__map">
         <TripMap trip = {trip} />
       </div>
-      <div className = "trip__attributes">
-        <div className="trip__attributes__description">{trip.description}</div>
-        <div className="trip__attributes__participation">Részvétel: {participation[trip.participation]}</div>
+      <div className = "trip__data">
+        <div className="trip__data__description">{trip.description}</div>
+        <div className="trip__data__participation">Részvétel: {participation[trip.participation]}</div>
         {props.user && !role && !applied &&
           <div className="trip__application">
             <button name = "apply" onClick = {handleApply}>Jelentkezek</button>
           </div>
         }
+        <div className="trip__data__participants">
+          <div className="trip__data__participants">Résztvevők: {trip.wheels.reduce((total, wheel) => {return wheel.approvedAt ? ++total : total},0)}</div>
+          <div className="trip__data__riderfinished">Teljesítette: {trip.wheels.reduce((total, wheel) => {return wheel.completedAt ? ++total : total},0)}</div>
+        </div>
         {props.user && role === 'creator' &&
           <TripOwner trip = {trip} user = {props.user}/>}
       </div>
