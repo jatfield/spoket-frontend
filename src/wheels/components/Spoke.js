@@ -11,7 +11,7 @@ const Spoke = (props) => {
   useEffect (() => {
     const getSpokeUrl = async () => {
       try {
-        const responseData = await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/spokes/${props.wheel._id}/${props.spoke._id}`, 'GET', null, {'Authentication': `token ${props.user.fbToken}`});
+        const responseData = await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/spokes/${props.wheel._id}/${props.spoke._id}`, 'GET', null, {'Authentication': `token ${props.user.fbToken} id ${props.user.spoketId}`});
         setSpokeImageUrl(responseData.url);
       } catch (error) {
         console.log(error);

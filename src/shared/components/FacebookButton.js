@@ -39,9 +39,9 @@ const FacebookButton = (props) => {
 
   return (
     <React.Fragment>
-      {(fbStatus === "connected" && props.user) &&
+      {(props.user) &&
         <div onClick = {faceBookLogout}>Kijelentkezés</div>}
-      {(fbStatus !== "connected" || !props.user) &&
+      {(!props.user) &&
         <div onClick = {faceBookLogin}>Bejelentkezés</div>}
     </React.Fragment>
   )

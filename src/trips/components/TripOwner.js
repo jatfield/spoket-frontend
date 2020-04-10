@@ -14,7 +14,7 @@ const TripOwner = (props) => {
   useEffect (() => {
     const getTripData = async () => {
       try {
-        const responseData = await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/trips/${props.trip._id}/creatordata`, 'GET', null, {'Authentication': `token ${props.user.fbToken}`});
+        const responseData = await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/trips/${props.trip._id}/creatordata`, 'GET', null, {'Authentication': `token ${props.user.fbToken} id ${props.user.spoketId}`});
         setTripData(responseData);        
       } catch (error) {}
     }

@@ -14,7 +14,7 @@ const TripParticipants = (props) => {
     const getRiders = async () => {
       let responseData;
       try {
-        responseData = await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/trips/${props.trip._id}/participants`, 'GET', null, {'Authentication': `token ${props.user.fbToken}`});
+        responseData = await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/trips/${props.trip._id}/participants`, 'GET', null, {'Authentication': `token ${props.user.fbToken} id ${props.user.spoketId}`});
       } catch (error) {
         console.log(error);
       }     

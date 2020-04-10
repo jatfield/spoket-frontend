@@ -17,7 +17,7 @@ const Wheels = (props) => {
   useEffect (() => {
     const getWheel = async () => {
       try {
-        const responseData = await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/wheels/rider`, 'GET', null, {'Authentication': `token ${props.user.fbToken}`});
+        const responseData = await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/wheels/rider`, 'GET', null, {'Authentication': `token ${props.user.fbToken} id ${props.user.spoketId}`});
         setLoadedWheels(responseData.wheels);
       } catch (error) {}
     };
