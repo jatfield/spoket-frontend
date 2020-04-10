@@ -18,10 +18,10 @@ const TripOwner = (props) => {
   return (
     <React.Fragment>
       <Modal show = {showParticipants} onCancel = {hideParticipants}>
-        <TripParticipants trip = {props.trip} user = {props.user}/>
+        <TripParticipants trip = {props.trip} user = {props.user} approvalSent = {props.approvalSent} />
       </Modal>
       <div className="trip__tripowner_data" onClick = {handleTripParticipantsClick}>
-        <div className="tripowner_data__toapprove">Jelentkezők : {props.trip.wheels.reduce((total, wheel) => {return !wheel.approvedAt ? ++total : total},0)}</div>
+        <div className="tripowner_data__toapprove">Jelentkezők : {props.applied.length}</div>
       </div>
     </React.Fragment>
   )

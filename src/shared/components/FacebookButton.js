@@ -2,21 +2,18 @@ import React, { useEffect, useState } from 'react';
 
 const FacebookButton = (props) => {
 //fbready to custom hook
-  const [fbStatus, setFbStatus] = useState("");
   const [fbReady, setFbReady] = useState(false);
 
   const logout = props.logout;
 
   const faceBookLogin = () => {
-    window.FB.login((response) => {
-      setFbStatus(response.status);                  
+    window.FB.login((response) => {         
       response.status === "connected" && props.login(response.authResponse.userID, response.authResponse.expiresIn, response.authResponse.accessToken);
     });
   };
 
   const faceBookLogout = () => {
     window.FB.logout((response) => {
-      setFbStatus(response.status);      
       logout();
     });
   };
@@ -32,7 +29,6 @@ const FacebookButton = (props) => {
     if (fbReady && window.FB) {
       window.FB.getLoginStatus((response) => {
         response.status !== "connected" && logout();        
-        setFbStatus(response.status);
       });    
     }
   }, [fbReady, logout]);

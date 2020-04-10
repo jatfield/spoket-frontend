@@ -2,3 +2,7 @@
   display: grid;
   grid-template-columns: 1fr 2fr;
 }
+
+.spoke__image img {
+  image-orientation: from-image;
+}

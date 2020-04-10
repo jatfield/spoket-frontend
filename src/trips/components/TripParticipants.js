@@ -27,16 +27,13 @@ const TripParticipants = (props) => {
     setApproved(() => approved.find((a) => a === riderId) ? approved.filter((a) => a !== riderId) : [...approved, riderId]);
   };
 
-  const handleMessageBoxSubmit = async () => {
+  const handleApprovalSubmit = async (e) => {
+    e.preventDefault();
     try {
       const decided = [];
-      riders.applicants.map((r) => decided.push(r._id));
-      const responseData = await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/wheels/approval`, 'POST', JSON.stringify({approved, decided}), {'Content-Type':'application/json', 'Authentication': `token ${props.user.fbToken}`});
-      setRiders(() => {
-        const newApplicants = riders.applicants.filter((a) => responseData.applicants.indexOf(a._id) === -1);
-        const newParticipants = riders.participants.filter((a) => responseData.participants.indexOf(a._id) === -1);
-        return {applicants: newApplicants, participants: newParticipants}
-      });
+      riders.applicants.map((r) => decided.push(r.wheel));
+      await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/wheels/approval`, 'POST', JSON.stringify({trip: props.trip, approved, decided}), {'Content-Type':'application/json', 'Authentication': `token ${props.user.fbToken} id ${props.user.spoketId}`});
+      props.approvalSent();
     } catch (error) {
       console.log(error);
     }
@@ -46,8 +43,17 @@ const TripParticipants = (props) => {
     <React.Fragment>
       {isLoading && <LoadingSpinner />}
       {!isLoading && riders && <div className="trip_riders">
-        {riders.applicants.length && <div className = "riders"></div>}
-        <div className="trip_riders__participants">{riders.participants.map((p) => <Participant participant = {p} key = {p._id}/> )}</div>
+        <div className="trip_riders__participants">
+          {riders.participants.map((p) => <Participant participant = {p} key = {p._id}  role = 'participant'/> )}
+          {riders.applicants.length && riders.applicants.map((p) => 
+            <Participant 
+              participant = {p} 
+              key = {p._id} 
+              approveButtonHandler = {approveButtonHandler} 
+              role = 'applicant'
+              ticked = {!!approved.find((a) => a === p.wheel)}  /> )}
+        </div>
+        <button onClick = {handleApprovalSubmit}>Küldés</button>
       </div>} 
     </React.Fragment>)
 

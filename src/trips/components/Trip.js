@@ -6,14 +6,16 @@ import TripOwner from './TripOwner';
 import LoadingSpinner from '../../shared/components/LoadingSpinner';
 
 const Trip = (props) => {
+  const trip = props.trip;
+  const participation = {"open": "nyílt", "invitational": "meghívásos", "approval": "jóváhagyásos"};
 
   const {isLoading, sendRequest} = useFetch();
   const [applied, setApplied] = useState(false);
   const [role, setRole] = useState(false);
+  const wheels = {approved: trip.wheels.filter((wheel) => wheel.approvedAt),
+                            completed: trip.wheels.filter((wheel) => wheel.completedAt),
+                            applied: trip.wheels.filter((wheel) => !wheel.approvedAt)};
 
-  const trip = props.trip;
-  const participation = {"open": "nyílt", "invitational": "meghívásos", "approval": "jóváhagyásos"}
-  
   const handleApply = async () => {
     try {
       await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/wheels/create/${trip._id}`, 'POST', null, {'Authentication': `token ${props.user.fbToken} id ${props.user.spoketId}`});
@@ -49,11 +51,11 @@ const Trip = (props) => {
           </div>
         }
         <div className="trip__data__participants">
-          <div className="trip__data__participants">Résztvevők: {trip.wheels.reduce((total, wheel) => {return wheel.approvedAt ? ++total : total},0)}</div>
-          <div className="trip__data__riderfinished">Teljesítette: {trip.wheels.reduce((total, wheel) => {return wheel.completedAt ? ++total : total},0)}</div>
+          <div className="trip__data__participants">Résztvevők: {wheels.approved.length}</div>
+          <div className="trip__data__riderfinished">Teljesítette: {wheels.completed.length}</div>
         </div>
         {props.user && role === 'creator' &&
-          <TripOwner trip = {trip} user = {props.user}/>}
+          <TripOwner trip = {trip} user = {props.user} approvalSent = {props.approvalSent} applied = {wheels.applied} />}
       </div>
     </React.Fragment>
   );
