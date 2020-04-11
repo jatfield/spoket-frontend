@@ -14,7 +14,7 @@ const MessageBox = (props) => {
     const getMessages = async () => {
       let responseData;
       try {
-        responseData = await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/riders/messages`, 'GET', null, {'Authentication': `token ${props.user.fbToken} id ${props.user.spoketId}`});
+        responseData = await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/riders/messages`, 'GET', null, {'Authentication': `token ${props.user.spokeToken}`});
       } catch (error) {
         console.log(error);
       }     
@@ -31,7 +31,7 @@ const MessageBox = (props) => {
     try {
       const decided = [];
       messages.ridersToApprove.map((r) => decided.push(r.wheelId));
-      await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/wheels/approval`, 'POST', JSON.stringify({approved, decided}), {'Content-Type':'application/json', 'Authentication': `token ${props.user.fbToken}`});
+      await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/wheels/approval`, 'POST', JSON.stringify({approved, decided}), {'Content-Type':'application/json', 'Authentication': `token ${props.user.spokeToken}`});
       setSent((sent) => ++sent);
     } catch (error) {
       console.log(error);

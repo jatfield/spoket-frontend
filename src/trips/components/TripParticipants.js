@@ -14,7 +14,7 @@ const TripParticipants = (props) => {
     const getRiders = async () => {
       let responseData;
       try {
-        responseData = await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/trips/${props.trip._id}/participants`, 'GET', null, {'Authentication': `token ${props.user.fbToken} id ${props.user.spoketId}`});
+        responseData = await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/trips/${props.trip._id}/participants`, 'GET', null, {'Authentication': `token ${props.user.spokeToken}`});
       } catch (error) {
         console.log(error);
       }     
@@ -32,7 +32,7 @@ const TripParticipants = (props) => {
     try {
       const decided = [];
       riders.applicants.map((r) => decided.push(r.wheel));
-      await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/wheels/approval`, 'POST', JSON.stringify({trip: props.trip, approved, decided}), {'Content-Type':'application/json', 'Authentication': `token ${props.user.fbToken} id ${props.user.spoketId}`});
+      await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/wheels/approval`, 'POST', JSON.stringify({trip: props.trip, approved, decided}), {'Content-Type':'application/json', 'Authentication': `token ${props.user.spokeToken}`});
       props.approvalSent();
     } catch (error) {
       console.log(error);

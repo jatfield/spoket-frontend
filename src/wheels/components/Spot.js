@@ -28,7 +28,7 @@ const Spot = (props) => {
     formData.append('image', upload.image);
     formData.append('spot', JSON.stringify({location: props.spot.location, _id: props.spot._id, wheel}));
       try {
-        const responseData = await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/spokes`, 'POST', formData, {'Authentication': `token ${props.user.fbToken} id ${props.user.spoketId}`});
+        const responseData = await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/spokes`, 'POST', formData, {'Authentication': `token ${props.user.spokeToken}`});
         if (responseData.gps === "N/A") {
           throw new Error("No GPS");
         }

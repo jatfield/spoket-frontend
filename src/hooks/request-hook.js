@@ -41,5 +41,5 @@ export const useFetch = () => {
     };
   }, []);
 
-  return {isLoading, error, sendRequest, clearError}
+  return {isLoading, errorResponse: error, sendRequest, clearError}
 }

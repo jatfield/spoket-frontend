@@ -18,7 +18,7 @@ const Trip = (props) => {
 
   const handleApply = async () => {
     try {
-      await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/wheels/create/${trip._id}`, 'POST', null, {'Authentication': `token ${props.user.fbToken} id ${props.user.spoketId}`});
+      await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/wheels/create/${trip._id}`, 'POST', null, {'Authentication': `token ${props.user.spokeToken}`});
     } catch (error) {
       
     }
@@ -28,7 +28,7 @@ const Trip = (props) => {
   useEffect (() => {
     const getRole = async () => {
       try {
-        const responseData = await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/trips/${props.trip._id}/role`, 'GET', null, {'Authentication': `token ${props.user.fbToken} id ${props.user.spoketId}`});
+        const responseData = await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/trips/${props.trip._id}/role`, 'GET', null, {'Authentication': `token ${props.user.spokeToken}`});
         setRole(responseData.role);        
       } catch (error) {}
     }
