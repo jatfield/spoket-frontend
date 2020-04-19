@@ -5,7 +5,6 @@ import './App.css';
 import {useAuth} from './hooks/auth-hook'
 import TripsList from './trips/pages/TripsList';
 import Wheels from './wheels/pages/Wheels';
-import MessageBox from './shared/components/MessageBox';
 import Navigation from './navigation/pages/Navigation';
 
 function App() {

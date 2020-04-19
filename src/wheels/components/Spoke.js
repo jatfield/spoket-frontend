@@ -32,7 +32,7 @@ const Spoke = (props) => {
           
         </div>}
         <div className="spoke__uploadlink"><p onClick = {props.handleImageUploadClick}>{spokeImageUrl ? "Új kép" : "Feltöltöm a képet"}</p></div>
-      {props.spoke && <SpokeMap spoke = {props.spoke} spot = {props.spot}/>}
+      {props.spoke && !isLoading &&  <SpokeMap spoke = {props.spoke} spot = {props.spot}/>}
     </div>)
 }
 
