@@ -9,14 +9,15 @@ const SpokeMap = (props) => {
   const spokeCoords = {lat: props.spoke.location.lat, lng: props.spoke.location.lng};
   const mapRef = useRef();
 
+  const zoomLevel = props.spoke.distance > 1000 ? Math.floor(8 + 80000 / props.spoke.distance) : 14;
+
   useEffect (() => {
     //console.log(mapRef.current);
-    
   }, [mapRef])
 
   return (
   <div className="spoke__map">
-    <Map ref = {mapRef} center={[(spokeCoords.lat + spotCoords.lat) / 2, (spokeCoords.lng + spotCoords.lng) / 2]} zoom={8 +  80000 / props.spoke.distance}>
+    <Map ref = {mapRef} center={[(spokeCoords.lat + spotCoords.lat) / 2, (spokeCoords.lng + spotCoords.lng) / 2]} zoom={zoomLevel}>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -28,14 +29,14 @@ const SpokeMap = (props) => {
           spokeCoords.lng
         ]}
       />
-      <Marker
+      {!props.verified && <Marker
         key={spotCoords.lat + spotCoords.lng}
         position={[
           spotCoords.lat,
           spotCoords.lng
         ]}
-      />
-      <Polyline positions = {[[spotCoords.lat, spotCoords.lng],[spokeCoords.lat, spokeCoords.lng]]}/>
+      />}
+      {!props.verified && <Polyline positions = {[[spotCoords.lat, spotCoords.lng],[spokeCoords.lat, spokeCoords.lng]]}/>}
     </Map>
   </div>
   )

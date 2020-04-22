@@ -58,9 +58,9 @@ const Spot = (props) => {
     setImageUploadShow(false);
   };
 
-  const spotClickHandler = (spot) => {
+  const spotClickHandler = () => {
     if (spotMapModalShow) hideSpotMapModal();
-    setClickedSpot(spot);
+    setClickedSpot(props.spot);
     setSpotMapModalShow(true);
   };
 
@@ -92,7 +92,7 @@ const Spot = (props) => {
         <SpotMap spot = {clickedSpot}/>
       </Modal>
       <div className ="wheel__spot" key = {props.spot._id}>
-        <h3 onClick = {() => spotClickHandler(props.spot)}>{props.spot.name}</h3>
+        <h3 onClick = {spotClickHandler}>{props.spot.name}</h3>
         {spoke ? spoke.updatedAt : "nincs látogatva"} {spoke && spoke.verifiedAt ? spoke.verifiedAt : "nincs igazolva"}
         <div className="wheel__spot__spoke_open" onClick = {spokeClickHandler}>látogatás</div>
       </div>

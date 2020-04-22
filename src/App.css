@@ -5,6 +5,8 @@
 
 .app {
   display: grid;
+  height: 100vh;
+  width: 100vw;
   grid-template-columns: 1fr;
   grid-template-rows: 5rem 3em 4fr 1fr;
   /* elnevezi a sorokat is "header-start / header-end": header kezdetétől a végéig*/
@@ -24,13 +26,13 @@
 
 .app__navbar {
   grid-area: navbar;
-  grid-template-columns: 1fr 1fr;
   display: grid;
 }
 
 .app__main {
   grid-area: main;
-  width: 100%;
+  width: 100vw;
+  overflow-y: scroll;
 }
 
 .app__footer {

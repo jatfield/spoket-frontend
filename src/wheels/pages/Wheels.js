@@ -32,9 +32,8 @@ const Wheels = (props) => {
   return (
     <React.Fragment>
       {isLoading && !loadedWheels && <LoadingSpinner />}
-      {!isLoading && !loadedWheels && 
+      {!isLoading && loadedWheels && !loadedWheels.length && 
       <div>
-        <h2>Fel kéne venni egy túrát!</h2>
         <NavLink to = '/trips'>Túralista</NavLink>
       </div>}
       {!isLoading && loadedWheels &&

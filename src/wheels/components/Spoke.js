@@ -7,6 +7,8 @@ const Spoke = (props) => {
 
   const {isLoading, sendRequest} = useFetch();
   const [spokeImageUrl, setSpokeImageUrl] = useState();
+  console.log(props.spoke, props.spot);
+  
 
   useEffect (() => {
     const getSpokeUrl = async () => {
@@ -21,6 +23,10 @@ const Spoke = (props) => {
     
   }, [sendRequest, props, setSpokeImageUrl]);
 
+  const handleUploadClick = () => {
+    props.handleImageUploadClick();
+  };
+
   return (
     <div className="wheel__spoke">
       {!isLoading && spokeImageUrl && 
@@ -31,8 +37,8 @@ const Spoke = (props) => {
           {props.spoke.verifiedAt ? 'kép elfogadva' : 'kép elutasítva: túl messze készült'}, {props.spoke.distance && `távolság: ${(Math.round(props.spoke.distance) * 100)/100} m`}
           
         </div>}
-        <div className="spoke__uploadlink"><p onClick = {props.handleImageUploadClick}>{spokeImageUrl ? "Új kép" : "Feltöltöm a képet"}</p></div>
-      {props.spoke && !isLoading &&  <SpokeMap spoke = {props.spoke} spot = {props.spot}/>}
+      <div className="spoke__uploadlink"><p onClick = {handleUploadClick}>{spokeImageUrl ? "Új kép" : "Feltöltöm a képet"}</p></div>
+      {props.spoke && props.spot &&  <SpokeMap spoke = {props.spoke} spot = {props.spot} verified = {props.spoke.verifiedAt} />}
     </div>)
 }
 
