@@ -44,6 +44,7 @@ const Trip = (props) => {
       </div>
       <div className = "trip__data">
         <div className="trip__data__description">{trip.description}</div>
+        <div className="trip__data__spotnumber">Küllők: {trip.spots.length}</div>
         <div className="trip__data__participation">Részvétel: {participation[trip.participation]}</div>
         {props.user && !role && !applied &&
           <div className="trip__application">

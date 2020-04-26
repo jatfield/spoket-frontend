@@ -1,12 +1,13 @@
 .modal__container {
   display: grid;
   position: fixed;
-  width: 35rem;
-  height: 35rem;
-  top: 30%;
-  left: calc(50% - 12rem);
+  min-width: 20rem;
+  max-width: 35rem;
+  top: 20%;
+  left: calc(50% - 15rem);
   background-color: white;
   border: 1px solid grey;
+  border-radius: 2%;
   box-shadow: 5px 10px 2px rgba(78, 78, 78, 0.3);
   z-index: var(--above-modal-backdrop-z);
 }

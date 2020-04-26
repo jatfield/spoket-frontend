@@ -1,0 +1,18 @@
+.trip_riders__participant {
+  display: grid;
+  grid-template-columns: 5rem 1fr 2rem;
+  align-items: center;
+}
+
+.participant__image img {
+  height: 5rem;
+}
+
+.participant__image {
+  border: 1px solid black;
+  border-radius: 5%;
+}
+
+.participant__name {
+  margin: 2rem;
+}

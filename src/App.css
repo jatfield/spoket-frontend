@@ -8,13 +8,12 @@
   height: 100vh;
   width: 100vw;
   grid-template-columns: 1fr;
-  grid-template-rows: 5rem 3em 4fr 1fr;
+  grid-template-rows: 5rem 3em 4fr;
   /* elnevezi a sorokat is "header-start / header-end": header kezdetétől a végéig*/
   grid-template-areas:  
     "header"
     "navbar"
-    "main"
-    "footer";
+    "main";
     justify-items: center;
 }
 

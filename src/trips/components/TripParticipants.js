@@ -44,7 +44,11 @@ const TripParticipants = (props) => {
       {isLoading && <LoadingSpinner />}
       {!isLoading && riders && <div className="trip_riders">
         <div className="trip_riders__participants">
+          <h4>Résztvevők:</h4>
           {riders.participants.map((p) => <Participant participant = {p} key = {p._id}  role = 'participant'/> )}
+        </div>
+        {riders.applicants.length && <div className="trip_riders__applicants">
+        <h4>Jelentkezők:</h4>
           {riders.applicants.length && riders.applicants.map((p) => 
             <Participant 
               participant = {p} 
@@ -52,8 +56,8 @@ const TripParticipants = (props) => {
               approveButtonHandler = {approveButtonHandler} 
               role = 'applicant'
               ticked = {!!approved.find((a) => a === p.wheel)}  /> )}
-        </div>
-        <button onClick = {handleApprovalSubmit}>Küldés</button>
+          <button onClick = {handleApprovalSubmit}>Küldés</button>
+        </div>}
       </div>} 
     </React.Fragment>)
 

@@ -6,12 +6,22 @@ import Modal from '../../shared/components/Modal';
 import LoadingSpinner from '../../shared/components/LoadingSpinner';
 import SpotMap from '../../trips/components/SpotMap';
 import Spoke from './Spoke';
+import dayjs from 'dayjs';
+import { ReactComponent as AddSpokeIcon } from '../../shared/images/add_location-24px.svg';
+import { ReactComponent as EditSpokeIcon } from '../../shared/images/edit_location-24px.svg';
+import { ReactComponent as UnVerifiedSpokeState } from '../../shared/images/not_listed_location-24px.svg';
+import { ReactComponent as VerifiedSpokeState } from '../../shared/images/place-24px.svg';
+import './Spot.css'
 
 const Spot = (props) => {
 
   const {isLoading, sendRequest} = useFetch();
   const [spoke, setSpoke] = useState(() => {
     const spoke = props.wheel.spokes.find((spoke) => spoke.spot === props.spot._id);
+    if (spoke) {
+      spoke.visit = spoke.updatedAt && `Rögzítve: ${dayjs(spoke.updatedAt).format('YYYY.MM.DD HH:mm')}`;
+      spoke.verification = spoke.verifiedAt && `Igazolva: ${dayjs(spoke.verifiedAt).format('YYYY.MM.DD HH:mm')}`;
+    }
     return(spoke)
   });
   const [imageUploadShow, setImageUploadShow] = useState(false);
@@ -32,6 +42,9 @@ const Spot = (props) => {
         if (responseData.gps === "N/A") {
           throw new Error("No GPS");
         }
+        responseData.spoke.visit = responseData.spoke.updatedAt && `Rögzítve: ${dayjs(responseData.spoke.updatedAt).format('YYYY.MM.DD HH:mm')}`;
+        responseData.spoke.verification = responseData.spoke.verifiedAt && `Igazolva: ${dayjs(spoke.verifiedAt).format('YYYY.MM.DD HH:mm')}`;
+        
         setSpoke(responseData.spoke);
         setImageUploadShow(false);
       } catch (error) {
@@ -92,9 +105,12 @@ const Spot = (props) => {
         <SpotMap spot = {clickedSpot}/>
       </Modal>
       <div className ="wheel__spot" key = {props.spot._id}>
-        <h3 onClick = {spotClickHandler}>{props.spot.name}</h3>
-        {spoke ? spoke.updatedAt : "nincs látogatva"} {spoke && spoke.verifiedAt ? spoke.verifiedAt : "nincs igazolva"}
-        <div className="wheel__spot__spoke_open" onClick = {spokeClickHandler}>látogatás</div>
+        <h3 onClick = {spotClickHandler} className="wheel_spot__spot_name">{props.spot.name}</h3>
+        {spoke ? 
+          <div className="wheel_spot__spoke_controls">
+            {<EditSpokeIcon onClick = {spokeClickHandler} className = "edit_spoke_icon" transform = "scale(1.5)"/>}{spoke.visit} <br />
+            {spoke.verification ? <VerifiedSpokeState className = "verified_spoke_state_icon" transform = "scale(1.5)"/> : <UnVerifiedSpokeState className = "unverified_spoke_state_icon" transform = "scale(1.5)"/> }{spoke.verification}
+          </div> : <AddSpokeIcon onClick = {spokeClickHandler}  className = "add_spoke_icon" transform = "scale(1.5)"/>}
       </div>
     </React.Fragment>
   )
