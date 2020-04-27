@@ -11,17 +11,15 @@ import { ReactComponent as AddSpokeIcon } from '../../shared/images/add_location
 import { ReactComponent as EditSpokeIcon } from '../../shared/images/edit_location-24px.svg';
 import { ReactComponent as UnVerifiedSpokeState } from '../../shared/images/not_listed_location-24px.svg';
 import { ReactComponent as VerifiedSpokeState } from '../../shared/images/place-24px.svg';
+import { ReactComponent as ShowSpotIcon } from '../../shared/images/map-24px.svg';
 import './Spot.css'
+import ErrorResponse from '../../shared/components/ErrorResponse';
 
 const Spot = (props) => {
 
-  const {isLoading, sendRequest} = useFetch();
+  const {errorResponse, clearError, isLoading, sendRequest} = useFetch();
   const [spoke, setSpoke] = useState(() => {
     const spoke = props.wheel.spokes.find((spoke) => spoke.spot === props.spot._id);
-    if (spoke) {
-      spoke.visit = spoke.updatedAt && `Rögzítve: ${dayjs(spoke.updatedAt).format('YYYY.MM.DD HH:mm')}`;
-      spoke.verification = spoke.verifiedAt && `Igazolva: ${dayjs(spoke.verifiedAt).format('YYYY.MM.DD HH:mm')}`;
-    }
     return(spoke)
   });
   const [imageUploadShow, setImageUploadShow] = useState(false);
@@ -42,8 +40,8 @@ const Spot = (props) => {
         if (responseData.gps === "N/A") {
           throw new Error("No GPS");
         }
-        responseData.spoke.visit = responseData.spoke.updatedAt && `Rögzítve: ${dayjs(responseData.spoke.updatedAt).format('YYYY.MM.DD HH:mm')}`;
-        responseData.spoke.verification = responseData.spoke.verifiedAt && `Igazolva: ${dayjs(spoke.verifiedAt).format('YYYY.MM.DD HH:mm')}`;
+        responseData.spoke.visit = responseData.spoke.updatedAt && `Látogatás rögzítve: ${dayjs(responseData.spoke.updatedAt).format('YYYY.MM.DD HH:mm')}`;
+        responseData.spoke.verification = responseData.spoke.verifiedAt && `Látogatás igazolva: ${dayjs(spoke.verifiedAt).format('YYYY.MM.DD HH:mm')}`;
         
         setSpoke(responseData.spoke);
         setImageUploadShow(false);
@@ -92,10 +90,15 @@ const Spot = (props) => {
     setSpokeModalShow(false);
   };
 
+  const errorClickHandler = () => {
+    clearError();
+  };
+
   return (
     <React.Fragment>
       <Modal show = {imageUploadShow} onCancel = {hideImageUploadModal}>
         <ImageUpload onInput = {onImageInput} onSubmit = {handleUploadButton} />
+        {errorResponse && <ErrorResponse errorClickHandler = {errorClickHandler} error = {errorResponse} />}
         {isLoading && <LoadingSpinner />}
       </Modal>
       <Modal show = {spokeModalShow} onCancel = {hideSpokeModal}>
@@ -105,12 +108,16 @@ const Spot = (props) => {
         <SpotMap spot = {clickedSpot}/>
       </Modal>
       <div className ="wheel__spot" key = {props.spot._id}>
-        <h3 onClick = {spotClickHandler} className="wheel_spot__spot_name">{props.spot.name}</h3>
-        {spoke ? 
+        <h3 onClick = {spotClickHandler} className="wheel_spot__name">{props.spot.name}</h3>
+        <div className="wheel_spot__icons">
+          <ShowSpotIcon onClick = {spotClickHandler} transform = "scale(1.5)" className = "spot_icon--clickable" />
+          {spoke ? 
           <div className="wheel_spot__spoke_controls">
-            {<EditSpokeIcon onClick = {spokeClickHandler} className = "edit_spoke_icon" transform = "scale(1.5)"/>}{spoke.visit} <br />
-            {spoke.verification ? <VerifiedSpokeState className = "verified_spoke_state_icon" transform = "scale(1.5)"/> : <UnVerifiedSpokeState className = "unverified_spoke_state_icon" transform = "scale(1.5)"/> }{spoke.verification}
-          </div> : <AddSpokeIcon onClick = {spokeClickHandler}  className = "add_spoke_icon" transform = "scale(1.5)"/>}
+            {<EditSpokeIcon onClick = {spokeClickHandler} className = "spot_icon--clickable" transform = "scale(1.5)"/>}{spoke.visit}
+            {spoke.verifiedAt ? <VerifiedSpokeState className = "verified_spoke_state_icon" transform = "scale(1.5)"/> : <UnVerifiedSpokeState className = "unverified_spoke_state_icon" transform = "scale(1.5)"/> }{spoke.verification}
+          </div> : 
+          <AddSpokeIcon onClick = {spokeClickHandler} className = "spot_icon--clickable" transform = "scale(1.5)"/>}
+        </div> 
       </div>
     </React.Fragment>
   )

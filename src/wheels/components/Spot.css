@@ -6,19 +6,15 @@
   fill: yellow;
 }
 
-.add_spoke_icon {
-  cursor: pointer;
-  width: 100%;
-}
-
-.edit_spoke_icon {
+.spot_icon--clickable {
   cursor: pointer;
 }
 
 .wheel__spot {
   display: grid;
   grid-template-rows: minmax(5rem, auto) 1fr;
-  border: 1px dotted grey;
+  border-radius: 5%;
+  background-color: #f0a500;
 }
 
 .wheel_spot__spoke_controls {
@@ -27,5 +23,10 @@
   grid-auto-rows: 2rem;
 }
 
-.wheel_spot__spot_name {
+
+.wheel_spot__icons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: stretch;
+  padding: 2em;
 }

@@ -6,9 +6,7 @@ import './Spoke.css'
 const Spoke = (props) => {
 
   const {isLoading, sendRequest} = useFetch();
-  const [spokeImageUrl, setSpokeImageUrl] = useState();
-  console.log(props.spoke, props.spot);
-  
+  const [spokeImageUrl, setSpokeImageUrl] = useState();  
 
   useEffect (() => {
     const getSpokeUrl = async () => {
@@ -21,7 +19,7 @@ const Spoke = (props) => {
     };
     props.spoke && getSpokeUrl();
     
-  }, [sendRequest, props, setSpokeImageUrl]);
+  }, [sendRequest, props.wheel, props.spoke, props.user, setSpokeImageUrl]);
 
   const handleUploadClick = () => {
     props.handleImageUploadClick();

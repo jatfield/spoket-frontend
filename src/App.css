@@ -3,6 +3,8 @@
   --above-modal-backdrop-z: 702;
 }
 
+* { box-sizing: border-box; }
+
 .app {
   display: grid;
   height: 100vh;
@@ -14,29 +16,31 @@
     "header"
     "navbar"
     "main";
-    justify-items: center;
+  background-color: #f0a500;
 }
 
 .app__header {
+  width: 100vw;
   grid-area: header;
-  align-self: center;
+  display: grid;
   cursor: default;
+  justify-items: center;
 }
 
 .app__navbar {
   grid-area: navbar;
+  width: 100%;
   display: grid;
+  background-color: #000000;
+  justify-items: center;
 }
 
 .app__main {
   grid-area: main;
-  width: 100vw;
+  width: 100%;
   overflow-y: scroll;
-}
-
-.app__footer {
-  justify-self: left;
-  grid-area: footer;
+  overflow-x: hidden;
+  background-color: #dbdbdb;
 }
 
 .leaflet-container {
