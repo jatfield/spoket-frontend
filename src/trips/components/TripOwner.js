@@ -17,7 +17,7 @@ const TripOwner = (props) => {
 
   return (
     <React.Fragment>
-      <Modal show = {showParticipants} onCancel = {hideParticipants}>
+      <Modal show = {showParticipants} onCancel = {hideParticipants} title = "Résztvevők és jelentkezők">
         <TripParticipants trip = {props.trip} user = {props.user} approvalSent = {props.approvalSent} />
       </Modal>
       <div className="trip__tripowner_data" onClick = {handleTripParticipantsClick}>

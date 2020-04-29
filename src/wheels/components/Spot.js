@@ -28,7 +28,6 @@ const Spot = (props) => {
   const [clickedSpot, setClickedSpot] = useState();
   const [spotMapModalShow, setSpotMapModalShow] = useState(false);
 
-
   const uploadImg = async (wheel) => {
     if (upload.image) {
     const formData = new FormData();
@@ -101,11 +100,11 @@ const Spot = (props) => {
         {errorResponse && <ErrorResponse errorClickHandler = {errorClickHandler} error = {errorResponse} />}
         {isLoading && <LoadingSpinner />}
       </Modal>
-      <Modal show = {spokeModalShow} onCancel = {hideSpokeModal}>
+      <Modal show = {spokeModalShow} onCancel = {hideSpokeModal} title = {`${props.spot.name} - látogatás`}>
         <Spoke wheel = {props.wheel} spot = {props.spot} spoke = {spoke} handleImageUploadClick = {handleImageUploadClick} user = {props.user}/>
       </Modal>
-      <Modal show = {spotMapModalShow} onCancel = {hideSpotMapModal} title = {clickedSpot ? clickedSpot.name : ""}>
-        <SpotMap spot = {clickedSpot}/>
+      <Modal show = {spotMapModalShow} onCancel = {hideSpotMapModal} title = {props.spot.name} >
+        <SpotMap spot = {clickedSpot} user = {props.user} trip = {props.wheel.trip}/>
       </Modal>
       <div className ="wheel__spot" key = {props.spot._id}>
         <h3 onClick = {spotClickHandler} className="wheel_spot__name">{props.spot.name}</h3>

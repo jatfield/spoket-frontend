@@ -1,15 +1,26 @@
 .modal__container {
   display: grid;
+  grid-template-rows:  minmax(min-content, max-content) auto;
   position: fixed;
   min-width: 20rem;
-  max-width: 35rem;
-  top: 20%;
+  max-width: 30rem;
+  top: 5rem;
   left: calc(50% - 15rem);
   background-color: white;
   border: 1px solid grey;
   border-radius: 2%;
   box-shadow: 5px 10px 2px rgba(78, 78, 78, 0.3);
   z-index: var(--above-modal-backdrop-z);
+}
+
+.modal__header {
+  
+  background-color: #f0a500;
+  border: 2px solid black;
+  border-radius: 2%;
+  text-align: center;
+  user-select: none;
+  cursor: pointer;
 }
 
 .modal__backdrop {

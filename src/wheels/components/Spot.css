@@ -17,12 +17,15 @@
   background-color: #f0a500;
 }
 
+.wheel_spot__name {
+  cursor: pointer;
+}
+
 .wheel_spot__spoke_controls {
   display: grid;
   grid-template-columns: 2rem 1fr;
   grid-auto-rows: 2rem;
 }
-
 
 .wheel_spot__icons {
   display: grid;
