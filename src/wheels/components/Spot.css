@@ -14,7 +14,7 @@
   display: grid;
   grid-template-rows: minmax(5rem, auto) 1fr;
   border-radius: 5%;
-  background-color: #f0a500;
+  background-color: #e0dfd5;
 }
 
 .wheel_spot__name {

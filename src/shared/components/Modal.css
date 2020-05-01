@@ -2,8 +2,7 @@
   display: grid;
   grid-template-rows:  minmax(min-content, max-content) auto;
   position: fixed;
-  min-width: 20rem;
-  max-width: 30rem;
+  width: 25rem;
   top: 5rem;
   left: calc(50% - 15rem);
   background-color: white;
@@ -15,7 +14,7 @@
 
 .modal__header {
   
-  background-color: #f0a500;
+  background-color: #e0dfd5;
   border: 2px solid black;
   border-radius: 2%;
   text-align: center;

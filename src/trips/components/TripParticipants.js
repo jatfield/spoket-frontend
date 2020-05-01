@@ -3,6 +3,7 @@ import { useFetch } from '../../hooks/request-hook';
 import { useState } from 'react';
 import LoadingSpinner from '../../shared/components/LoadingSpinner';
 import Participant from './Participant';
+import './TripParticipants.css'
 
 const TripParticipants = (props) => {
 
@@ -48,7 +49,7 @@ const TripParticipants = (props) => {
           {riders.participants.map((p) => <Participant participant = {p} key = {p._id}  role = 'participant'/> )}
         </div>
         {riders.applicants.length > 0 && <div className="trip_riders__applicants">
-        <h4>Jelentkezők:</h4>
+          <h4>Jelentkezők:</h4>
           {riders.applicants.length && riders.applicants.map((p) => 
             <Participant 
               participant = {p} 
@@ -56,7 +57,9 @@ const TripParticipants = (props) => {
               approveButtonHandler = {approveButtonHandler} 
               role = 'applicant'
               ticked = {!!approved.find((a) => a === p.wheel)}  /> )}
-          <button onClick = {handleApprovalSubmit}>Küldés</button>
+          <div className="applicants__send">
+            <button onClick = {handleApprovalSubmit}>Küldés</button>
+          </div>
         </div>}
       </div>} 
     </React.Fragment>)

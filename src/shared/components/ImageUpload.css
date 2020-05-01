@@ -1,3 +1,7 @@
 .image_upload__preview img {
-  width: 100px;
+  width: 25rem;
+}
+
+.image_upload {
+  text-align: center;
 }

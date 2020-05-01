@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import {useFetch} from '../../hooks/request-hook'
 import SpokeMap from './SpokeMap';
-import './Spoke.css'
+import './Spoke.css';
+import dayjs from 'dayjs';
+import { ReactComponent as DateSpokeIcon } from '../../shared/images/today-24px.svg';
+import { ReactComponent as DistanceSpokeIcon } from '../../shared/images/settings_ethernet-24px.svg';
+
 
 const Spoke = (props) => {
 
@@ -32,10 +36,17 @@ const Spoke = (props) => {
           <div className="spoke__image">
             <img src = {spokeImageUrl} alt = {props.spot.name} width = {150}/>
           </div>
-          {props.spoke.verifiedAt ? 'kép elfogadva' : 'kép elutasítva: túl messze készült'}, {props.spoke.distance && `távolság: ${(Math.round(props.spoke.distance) * 100)/100} m`}
+          <div className="spoke__image_data">
+            <div className="spoke__image_data_status">
+              {props.spoke.verifiedAt ? 'Látogatás elfogadva' : 'Látogatás elutasítva: a kép túl messze készült'}
+              <DateSpokeIcon /> {dayjs(props.spoke.updatedAt).format('YYYY.MM.DD HH:mm')} <br/>
+            </div>
+            {props.spoke.distance &&<div className="spoke__image_data_distance"><DistanceSpokeIcon /> {(Math.round(props.spoke.distance) * 100)/100} m</div>}
+          </div>
+          
           
         </div>}
-      <div className="spoke__uploadlink"><p onClick = {handleUploadClick}>{spokeImageUrl ? "Új kép" : "Feltöltöm a képet"}</p></div>
+      <div className="spoke__uploadlink"><button onClick = {handleUploadClick}>{spokeImageUrl ? "Új kép" : "Képfeltöltés"}</button></div>
       {props.spoke && props.spot &&  <SpokeMap spoke = {props.spoke} spot = {props.spot} verified = {props.spoke.verifiedAt} />}
     </div>)
 }

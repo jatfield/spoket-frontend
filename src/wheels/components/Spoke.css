@@ -1,8 +1,17 @@
 .wheel__spoke {
+  width: 25rem;
+}
+
+.spoke__data {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 15rem auto;
 }
 
 .spoke__image img {
   image-orientation: from-image;
+  width: 15rem;
+}
+
+.spoke__uploadlink {
+  text-align: center;
 }

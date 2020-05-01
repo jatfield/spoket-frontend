@@ -16,3 +16,15 @@
 .participant__name {
   margin: 2rem;
 }
+
+.participant__button {
+  cursor: pointer;
+}
+
+.participant__button--denied {
+  fill: red;
+}
+
+.participant__button--approved {
+  fill: green;
+}

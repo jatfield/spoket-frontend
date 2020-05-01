@@ -9,14 +9,15 @@
   display: grid;
   height: 100vh;
   width: 100vw;
+  
   grid-template-columns: 1fr;
-  grid-template-rows: 5rem 3rem 4fr;
+  grid-template-rows: 7rem 3rem 4fr;
   /* elnevezi a sorokat is "header-start / header-end": header kezdetétől a végéig*/
   grid-template-areas:  
     "header"
     "navbar"
     "main";
-  background-color: #f0a500;
+  background-color: #e8e9eb;
 }
 
 .app__header {
@@ -25,24 +26,35 @@
   display: grid;
   cursor: default;
   justify-items: center;
+  background-color: #313638;
+  color: #e8e9eb;
+  font-size: 120%;
 }
 
 .app__navbar {
   grid-area: navbar;
   width: 100%;
   display: grid;
-  background-color: #000000;
+  background-color: #e0dfd5;
   justify-items: center;
 }
 
 .app__main {
-  grid-area: main;
   width: 100%;
-  overflow-y: scroll;
+  grid-area: main;
+  background-color: #e8e9eb;
   overflow-x: hidden;
-  background-color: #dbdbdb;
 }
 
 .leaflet-container {
   height: 100%
+}
+
+button {
+  width: 8rem;
+  height: 2rem;
+  background-color: #f09d51;
+  border-radius: 5%;
+  border: 1px solid black;
+  /*box-shadow: 4px 2px 2px #f06543;*/
 }

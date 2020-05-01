@@ -6,7 +6,6 @@ import Modal from '../../shared/components/Modal';
 import LoadingSpinner from '../../shared/components/LoadingSpinner';
 import SpotMap from '../../trips/components/SpotMap';
 import Spoke from './Spoke';
-import dayjs from 'dayjs';
 import { ReactComponent as AddSpokeIcon } from '../../shared/images/add_location-24px.svg';
 import { ReactComponent as EditSpokeIcon } from '../../shared/images/edit_location-24px.svg';
 import { ReactComponent as UnVerifiedSpokeState } from '../../shared/images/not_listed_location-24px.svg';
@@ -14,19 +13,21 @@ import { ReactComponent as VerifiedSpokeState } from '../../shared/images/place-
 import { ReactComponent as ShowSpotIcon } from '../../shared/images/map-24px.svg';
 import './Spot.css'
 import ErrorResponse from '../../shared/components/ErrorResponse';
+import { useEffect } from 'react';
 
 const Spot = (props) => {
 
   const {errorResponse, clearError, isLoading, sendRequest} = useFetch();
-  const [spoke, setSpoke] = useState(() => {
-    const spoke = props.wheel.spokes.find((spoke) => spoke.spot === props.spot._id);
-    return(spoke)
-  });
+  const [spoke, setSpoke] = useState();
   const [imageUploadShow, setImageUploadShow] = useState(false);
   const [upload, setUpload] = useState({});
   const [spokeModalShow, setSpokeModalShow] = useState(false);
   const [clickedSpot, setClickedSpot] = useState();
   const [spotMapModalShow, setSpotMapModalShow] = useState(false);
+
+  useEffect (() => {
+    setSpoke(() => !spoke ? props.wheel.spokes.find((spoke) => spoke.spot === props.spot._id) : spoke)
+   }, [props.spot._id, props.wheel, spoke]);
 
   const uploadImg = async (wheel) => {
     if (upload.image) {
@@ -39,11 +40,9 @@ const Spot = (props) => {
         if (responseData.gps === "N/A") {
           throw new Error("No GPS");
         }
-        responseData.spoke.visit = responseData.spoke.updatedAt && `Látogatás rögzítve: ${dayjs(responseData.spoke.updatedAt).format('YYYY.MM.DD HH:mm')}`;
-        responseData.spoke.verification = responseData.spoke.verifiedAt && `Látogatás igazolva: ${dayjs(spoke.verifiedAt).format('YYYY.MM.DD HH:mm')}`;
-        
         setSpoke(responseData.spoke);
         setImageUploadShow(false);
+        setSpokeModalShow(true);
       } catch (error) {
         console.log("Sikertelen képfeldolgozás", error);
       }
@@ -52,6 +51,7 @@ const Spot = (props) => {
 
   const handleImageUploadClick = () => {
     if (imageUploadShow) hideImageUploadModal();
+    if (spokeModalShow) hideSpokeModal();
     setImageUploadShow(true);
   };
 
@@ -95,7 +95,7 @@ const Spot = (props) => {
 
   return (
     <React.Fragment>
-      <Modal show = {imageUploadShow} onCancel = {hideImageUploadModal}>
+      <Modal show = {imageUploadShow} onCancel = {hideImageUploadModal} title = {"Látogatás fotójának feltöltése"}>
         <ImageUpload onInput = {onImageInput} onSubmit = {handleUploadButton} />
         {errorResponse && <ErrorResponse errorClickHandler = {errorClickHandler} error = {errorResponse} />}
         {isLoading && <LoadingSpinner />}
@@ -112,8 +112,8 @@ const Spot = (props) => {
           <ShowSpotIcon onClick = {spotClickHandler} transform = "scale(1.5)" className = "spot_icon--clickable" />
           {spoke ? 
           <div className="wheel_spot__spoke_controls">
-            {<EditSpokeIcon onClick = {spokeClickHandler} className = "spot_icon--clickable" transform = "scale(1.5)"/>}{spoke.visit}
-            {spoke.verifiedAt ? <VerifiedSpokeState className = "verified_spoke_state_icon" transform = "scale(1.5)"/> : <UnVerifiedSpokeState className = "unverified_spoke_state_icon" transform = "scale(1.5)"/> }{spoke.verification}
+            {<EditSpokeIcon onClick = {spokeClickHandler} className = "spot_icon--clickable" transform = "scale(1.5)"/>}
+            {spoke.verifiedAt ? <VerifiedSpokeState className = "verified_spoke_state_icon" transform = "scale(1.5)"/> : <UnVerifiedSpokeState className = "unverified_spoke_state_icon" transform = "scale(1.5)"/> }
           </div> : 
           <AddSpokeIcon onClick = {spokeClickHandler} className = "spot_icon--clickable" transform = "scale(1.5)"/>}
         </div> 

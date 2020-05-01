@@ -32,8 +32,8 @@ const ImageUpload = (props) => {
   }
 
   return (
-    <form>
-      <div className="image_upload">
+    <div className="image_upload">
+      <form>
         <input 
           ref = {filePickerRef}
           style = {{display: 'none'}}
@@ -43,10 +43,10 @@ const ImageUpload = (props) => {
         <div className="image_upload__preview">
           {previewUrl && <img src = {previewUrl} alt = "Preview" />}
         </div>
-        <button type = "button" onClick = {pickClickHandler}>Pick image!</button>
-      </div>
-      <button type = "submit" onClick = {props.onSubmit}>Feltöltöm!</button>
-    </form>
+        <button type = "button" onClick = {pickClickHandler}>{!image ? "Kép kiválasztása" : "Másik kép"}</button>
+      {image && <button type = "submit" onClick = {props.onSubmit}>Feltöltés</button>}
+      </form>
+    </div>
   )
 };
 

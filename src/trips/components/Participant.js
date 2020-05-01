@@ -18,8 +18,8 @@ const Participant = (props) => {
     <div className="participant__name">
       {props.participant.fbData.name}
     </div>
-    {props.role === 'applicant' && <div className={props.ticked ? "participant__button participant__button--approved" : "participant__button participant__button--denied"} onClick = {tickHandler}>
-      {props.ticked ? <Approved /> : <Denied /> }
+    {props.role === 'applicant' && <div onClick = {tickHandler}>
+      {props.ticked ? <Approved className= "participant__button participant__button--approved"/> : <Denied className = "participant__button participant__button--denied"/> }
     </div>}
   </div>);
 };
