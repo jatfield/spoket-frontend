@@ -1,5 +1,6 @@
 .trips {
   display: grid;
+  cursor: default;
 }
 
 .trips__trip {

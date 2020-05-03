@@ -20,9 +20,10 @@ const TripOwner = (props) => {
       <Modal show = {showParticipants} onCancel = {hideParticipants} title = "Résztvevők és jelentkezők">
         <TripParticipants trip = {props.trip} user = {props.user} approvalSent = {props.approvalSent} />
       </Modal>
-      <div className="trip__tripowner_data" onClick = {handleTripParticipantsClick}>
+      <div className="trip__tripowner_data">
         <div className="tripowner_data__toapprove">Jelentkezők : {props.applied.length}</div>
       </div>
+      <button onClick = {handleTripParticipantsClick}>Résztvevők listája</button>
     </React.Fragment>
   )
 

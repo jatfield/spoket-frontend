@@ -3,7 +3,8 @@
   --above-modal-backdrop-z: 702;
 }
 
-* { box-sizing: border-box; }
+* { box-sizing: border-box; 
+  }
 
 .app {
   display: grid;
@@ -11,12 +12,12 @@
   width: 100vw;
   
   grid-template-columns: 1fr;
-  grid-template-rows: 7rem 3rem 4fr;
+  grid-template-rows: 1fr 10fr 1fr;
   /* elnevezi a sorokat is "header-start / header-end": header kezdetétől a végéig*/
   grid-template-areas:  
     "header"
-    "navbar"
-    "main";
+    "main"
+    "navbar";
   background-color: #e8e9eb;
 }
 
@@ -37,6 +38,7 @@
   display: grid;
   background-color: #e0dfd5;
   justify-items: center;
+  border-top: 1rem solid #313638;
 }
 
 .app__main {
@@ -56,5 +58,5 @@ button {
   background-color: #f09d51;
   border-radius: 5%;
   border: 1px solid black;
-  /*box-shadow: 4px 2px 2px #f06543;*/
+  cursor: pointer;
 }
