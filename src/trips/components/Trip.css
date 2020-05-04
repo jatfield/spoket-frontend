@@ -3,10 +3,10 @@
 
 }
 .trip__map {
-  height: 250px;
-  width: 250px;
+  height: 12rem;
+  width: 12rem;
   border-radius: 50%;
-  border: 20px solid black;
+  border: 1rem solid black;
   overflow: hidden;
   margin: 10px;
 }

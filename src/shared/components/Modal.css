@@ -2,9 +2,9 @@
   display: grid;
   grid-template-rows:  minmax(min-content, max-content) auto;
   position: fixed;
-  width: 25rem;
+  width: 20rem;
   top: 5rem;
-  left: calc(50% - 15rem);
+  right: calc(50% - 10rem);
   background-color: white;
   border: 1px solid grey;
   border-radius: 2%;
@@ -13,13 +13,19 @@
 }
 
 .modal__header {
-  
   background-color: #e0dfd5;
   border: 2px solid black;
   border-radius: 2%;
   text-align: center;
   user-select: none;
   cursor: pointer;
+  display: grid;
+  grid-template-columns: 8fr 1fr;
+}
+
+.modal__header__close {
+  font-size: 200%;
+  font-weight: bold;
 }
 
 .modal__backdrop {

@@ -1,17 +1,21 @@
 .wheel__spoke {
-  width: 25rem;
+  width: 20rem;
 }
 
 .spoke__data {
   display: grid;
-  grid-template-columns: 15rem auto;
+  grid-template-columns: 12rem auto;
 }
 
 .spoke__image img {
   image-orientation: from-image;
-  width: 15rem;
+  width: 12rem;
 }
 
 .spoke__uploadlink {
   text-align: center;
+}
+
+.spoke__image_data {
+  display: grid;
 }

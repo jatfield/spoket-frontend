@@ -43,8 +43,6 @@ const Spoke = (props) => {
             </div>
             {props.spoke.distance &&<div className="spoke__image_data_distance"><DistanceSpokeIcon /> {(Math.round(props.spoke.distance) * 100)/100} m</div>}
           </div>
-          
-          
         </div>}
       <div className="spoke__uploadlink"><button onClick = {handleUploadClick}>{spokeImageUrl ? "Új kép" : "Képfeltöltés"}</button></div>
       {props.spoke && props.spot &&  <SpokeMap spoke = {props.spoke} spot = {props.spot} verified = {props.spoke.verifiedAt} />}
