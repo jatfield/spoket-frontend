@@ -19,6 +19,7 @@
 
 .wheel_spot__name {
   cursor: pointer;
+  text-align: center;
 }
 
 .wheel_spot__spoke_controls {

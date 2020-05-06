@@ -1,8 +1,9 @@
 import React from 'react';
+import './ErrorResponse.css'
 
 const ErrorResponse = (props) => {
 
-  return (<p onClick = {props.errorClickHandler}>{props.error}</p>)
+  return (<p className = "error_response" onClick = {props.errorClickHandler}><span className= "error_response__title">Hiba:</span> {props.error}</p>)
 
 }
 

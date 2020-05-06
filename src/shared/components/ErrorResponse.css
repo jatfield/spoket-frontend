@@ -1,0 +1,10 @@
+.error_response {
+  text-align: center;
+  font-weight: bold;
+  color: darkred;
+  cursor: default;
+}
+
+.error_response__title {
+  font-weight: bolder;
+}

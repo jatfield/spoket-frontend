@@ -9,7 +9,7 @@ const Modal = (props) => {
     <React.Fragment>
       <div className = "modal__container" >
         <div className="modal__header" onClick = {props.onCancel}>
-          <div className="modal__header__title">{props.title && <h2>{props.title}</h2>}</div>
+          <div className="modal__header__title">{props.title && <h3>{props.title}</h3>}</div>
           <div className="modal__header__close">x</div>
         </div>
         <div className = "modal__body">

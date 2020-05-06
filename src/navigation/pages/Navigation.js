@@ -18,7 +18,8 @@ const Navigation = (props) => {
           </li>
         </React.Fragment>}
         <li>
-        <Auth user = {props.user} login = {props.login} logout = {props.logout} /></li>
+          <Auth user = {props.user} login = {props.login} logout = {props.logout} />
+        </li>
       </ul>
     </div>
   )
