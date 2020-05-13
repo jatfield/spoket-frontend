@@ -17,11 +17,16 @@ const Auth = (props) => {
     const fbExpiry = new Date(Date.now() + expiresIn * 1000);
     const expiry = new Date(Date.now() + 24 * 3600 * 1000) < fbExpiry ? new Date(Date.now() + 24 * 3600 * 1000) : fbExpiry;
     
-    errorResponse ? alert(errorResponse) : props.login(true, fbId, expiry, fbToken, responseData.token, responseData.rider._id);
+    if (errorResponse) {
+      alert(errorResponse)
+    } else {
+      props.login(true, fbId, expiry, fbToken, responseData.token, responseData.rider._id);
+      props.onComplete();
+    }
   };
 
   const handleFacebookLogout = () => {
-    props.logout()
+    props.logout();
   };
 
   return (

@@ -4,8 +4,6 @@ const FacebookButton = (props) => {
 //fbready to custom hook
   const [fbReady, setFbReady] = useState(false);
 
-  const logout = props.logout;
-
   const faceBookLogin = () => {
     window.FB.login((response) => {         
       response.status === "connected" && props.login(response.authResponse.userID, response.authResponse.expiresIn, response.authResponse.accessToken);
@@ -14,7 +12,7 @@ const FacebookButton = (props) => {
 
   const faceBookLogout = () => {
     window.FB.logout((response) => {
-      logout();
+      props.logout();
     });
   };
 
@@ -28,10 +26,10 @@ const FacebookButton = (props) => {
   useEffect(() => {
     if (fbReady && window.FB) {
       window.FB.getLoginStatus((response) => {
-        response.status !== "connected" && logout();        
+        response.status !== "connected" && props.logout();        
       });    
     }
-  }, [fbReady, logout]);
+  }, [fbReady, props]);
 
   return (
     <React.Fragment>
