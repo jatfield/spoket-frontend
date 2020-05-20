@@ -25,18 +25,16 @@ const FacebookButton = (props) => {
 
   useEffect(() => {
     if (fbReady && window.FB) {
-      window.FB.getLoginStatus((response) => {
-        response.status !== "connected" && props.logout();        
-      });    
+      window.FB.getLoginStatus();    
     }
   }, [fbReady, props]);
 
   return (
     <React.Fragment>
       {(props.user) &&
-        <div onClick = {faceBookLogout}>Kijelentkezés</div>}
+        <button onClick = {faceBookLogout}>Kijelentkezés</button>}
       {(!props.user) &&
-        <div onClick = {faceBookLogin}>Bejelentkezés</div>}
+        <button onClick = {faceBookLogin}>Bejelentkezés</button>}
     </React.Fragment>
   )
 }

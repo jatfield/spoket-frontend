@@ -27,6 +27,7 @@ const Auth = (props) => {
 
   const handleFacebookLogout = () => {
     props.logout();
+    props.onComplete();
   };
 
   return (
