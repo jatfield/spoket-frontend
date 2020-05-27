@@ -18,7 +18,7 @@ const Navigation = (props) => {
 
   return (
     <React.Fragment>
-      <Modal show = {showLogin} onCancel = {hideLoginModal} title = "Hitelesítés">
+      <Modal show = {showLogin} onCancel = {hideLoginModal} title = "Azonosítás">
         <p>Az alkalmazás Facebook bejelentkezést használ. Személyes adatot nem tárolunk. <br />
           Amit igen: feltöltött képek és azok metaadatai, továbbá az alkalmazás használata során keletkezett adatok (kerekek, látogatások).<br />
           Az alkalmazásban tárolt adatok az alkalmazás <a href = "https://www.facebook.com/settings?tab=applications" target ="_blank">Facebook profilodról való leválasztása</a> esetén törlésre kerülnek.

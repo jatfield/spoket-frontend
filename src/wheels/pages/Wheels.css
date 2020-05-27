@@ -27,6 +27,19 @@
 
 .wheel__spots {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   gap: 1rem 0.5rem;
+}
+
+@media screen and (max-width: 600px) {
+  
+.wheel__spots {
+  grid-template-columns: 1fr;
+  }
+  
+.wheel {
+  grid-template-columns: 1fr;
+}
+.wheel h2 {
+  grid-column: 1;}
 }
