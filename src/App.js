@@ -6,6 +6,7 @@ import {useAuth} from './hooks/auth-hook'
 import TripsList from './trips/pages/TripsList';
 import Wheels from './wheels/pages/Wheels';
 import Navigation from './navigation/pages/Navigation';
+import PrivacyPolicy from './PrivacyPolicy';
 
 function App() {
 
@@ -20,11 +21,12 @@ function App() {
       <Route path = "/wheels" >
         <Wheels user = {user}/>
       </Route>
+      <Route path = "/pp" >
+        <PrivacyPolicy/>
+      </Route>
       <Route path = "/trips">
         <TripsList user = {user} />
       </Route>   
-      <Route path="/rider/:spoketId" >
-      </Route>
       <Redirect to="/" />
     </Switch>);
    } else { 
@@ -32,6 +34,9 @@ function App() {
     <Switch> {/*so it stops after picking a route*/}    
       <Route path = "/" exact>
         <TripsList />
+      </Route>
+      <Route path = "/pp" >
+        <PrivacyPolicy/>
       </Route>
       <Redirect to="/" />
     </Switch>);

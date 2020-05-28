@@ -1,0 +1,21 @@
+.pp_container {
+  padding: 4rem;
+}
+
+.pp_table, .pp_table th, .pp_table td {
+  border: 1px solid black;
+}
+
+.pp_table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.pp_table th {
+  background-color: #313638;
+  color: #e8e9eb;
+}
+
+.pp_table tr:nth-child(even) {
+  background-color: #e0dfd5;
+}

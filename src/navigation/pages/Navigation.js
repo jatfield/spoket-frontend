@@ -19,9 +19,13 @@ const Navigation = (props) => {
   return (
     <React.Fragment>
       <Modal show = {showLogin} onCancel = {hideLoginModal} title = "Azonosítás">
-        <p>Az alkalmazás Facebook bejelentkezést használ. Személyes adatot nem tárolunk. <br />
-          Amit igen: feltöltött képek és azok metaadatai, továbbá az alkalmazás használata során keletkezett adatok (kerekek, látogatások).<br />
-          Az alkalmazásban tárolt adatok az alkalmazás <a href = "https://www.facebook.com/settings?tab=applications" target ="_blank">Facebook profilodról való leválasztása</a> esetén törlésre kerülnek.
+        <p>Az alkalmazás Facebook bejelentkezést használ, személyes adatot nem tárol. 
+          <hr />
+          Megőrzésre kerülő adatok: opcionálisan megadható becenév, motortípus, valamint feltöltött képek és azok metaadatai, továbbá az alkalmazás használata során keletkezett adatok.
+          <hr />
+          Az alkalmazásban tárolt adatok az alkalmazás Facebook profilról való leválasztása esetén törlésre kerülnek.
+          <hr />
+          <NavLink to="/pp" onClick = {hideLoginModal}>Részletes adatvédelmi és felhasználási információk</NavLink>
         </p>
         <Auth user = {props.user} login = {props.login} logout = {props.logout} onComplete = {hideLoginModal} />
       </Modal>
