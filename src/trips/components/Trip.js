@@ -56,7 +56,7 @@ const Trip = (props) => {
           <div className="trip__data__riderfinished">Teljesítette: {wheels.completed.length}</div>
         </div>
         {props.user && role === 'creator' &&
-          <TripOwner trip = {trip} user = {props.user} approvalSent = {props.approvalSent} applied = {wheels.applied} />}
+          <TripOwner trip = {trip} user = {props.user} applied = {wheels.applied} />}
       </div>
     </React.Fragment>
   );

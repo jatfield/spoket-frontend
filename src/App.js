@@ -7,6 +7,7 @@ import TripsList from './trips/pages/TripsList';
 import Wheels from './wheels/pages/Wheels';
 import Navigation from './navigation/pages/Navigation';
 import PrivacyPolicy from './PrivacyPolicy';
+import TripAdmin from './trips/pages/TripAdmin';
 
 function App() {
 
@@ -27,11 +28,14 @@ function App() {
       <Route path = "/trips">
         <TripsList user = {user} />
       </Route>   
+      <Route path = "/tripadmin/:tripId">
+        <TripAdmin user = {user} />
+      </Route>   
       <Redirect to="/" />
     </Switch>);
    } else { 
     routes = (
-    <Switch> {/*so it stops after picking a route*/}    
+    <Switch>    
       <Route path = "/" exact>
         <TripsList />
       </Route>
@@ -49,12 +53,9 @@ function App() {
         <Router>    
           <div className = "app__navbar">
             <Navigation user = {user} login = {login} logout = {logout} />
-            {/*user && <MessageBox user = {user} />*/}
           </div>  
           <div className = "app__main">
             {routes}
-          </div>
-          <div className = "app__footer">
           </div>
         </Router>
       </div>

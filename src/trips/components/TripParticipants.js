@@ -10,6 +10,7 @@ const TripParticipants = (props) => {
   const {isLoading, sendRequest} = useFetch();
   const [riders, setRiders] = useState({applicants: [], participants: []});
   const [approved, setApproved] = useState([]);
+  const [approvalResult, setApprovalResult] = useState();
 
   useEffect (()=> {
     const getRiders = async () => {
@@ -22,7 +23,7 @@ const TripParticipants = (props) => {
       setRiders(responseData.riders);
     };
     getRiders();
-  }, [sendRequest, props.user, props.trip]);
+  }, [sendRequest, props.user, props.trip, approvalResult]);
 
   const approveButtonHandler = (riderId) => {
     setApproved(() => approved.find((a) => a === riderId) ? approved.filter((a) => a !== riderId) : [...approved, riderId]);
@@ -33,8 +34,8 @@ const TripParticipants = (props) => {
     try {
       const decided = [];
       riders.applicants.map((r) => decided.push(r.wheel));
-      await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/wheels/approval`, 'POST', JSON.stringify({trip: props.trip, approved, decided}), {'Content-Type':'application/json', 'Authentication': `token ${props.user.spokeToken}`});
-      props.approvalSent();
+      const responseData = await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/wheels/approval`, 'POST', JSON.stringify({trip: props.trip, approved, decided}), {'Content-Type':'application/json', 'Authentication': `token ${props.user.spokeToken}`});
+      setApprovalResult(responseData);
     } catch (error) {
       console.log(error);
     }

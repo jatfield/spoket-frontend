@@ -1,29 +1,14 @@
 import React from 'react';
-import { useState } from 'react';
-import Modal from '../../shared/components/Modal';
-import TripParticipants from './TripParticipants';
+import { NavLink } from 'react-router-dom';
 
 const TripOwner = (props) => {
 
-  const [showParticipants, setShowParticipants] = useState(false);
-  
-  const handleTripParticipantsClick = () => {
-    if (props.trip.wheels.length) setShowParticipants(true)
-  };
-  
-  const hideParticipants = () => {
-    setShowParticipants(false);
-  };
-
   return (
     <React.Fragment>
-      <Modal show = {showParticipants} onCancel = {hideParticipants} title = "Résztvevők és jelentkezők">
-        <TripParticipants trip = {props.trip} user = {props.user} approvalSent = {props.approvalSent} />
-      </Modal>
       <div className="trip__tripowner_data">
         <div className="tripowner_data__toapprove">Jelentkezők : {props.applied.length}</div>
       </div>
-      <button onClick = {handleTripParticipantsClick}>Résztvevők listája</button>
+      <NavLink to = {`/tripadmin/${props.trip._id}`}>Kaland kezelése</NavLink>
     </React.Fragment>
   )
 
