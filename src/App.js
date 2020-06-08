@@ -48,7 +48,7 @@ function App() {
   return (
       <div className = "app">
         <div className = "app__header">
-          <h1>kalandkerekek.hu</h1>
+          <h1>kerékkalandok.hu</h1>
         </div>
         <Router>    
           <div className = "app__navbar">

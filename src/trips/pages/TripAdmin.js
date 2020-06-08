@@ -31,6 +31,7 @@ const TripAdmin = (props) => {
     <React.Fragment>
       {isLoading && !trip && <LoadingSpinner />}
       {!isLoading && trip && <div className = "tripadmin">
+        <h1>{trip.name}</h1>
         <h2 onClick = {handleParticipantsClick}>Résztvevők</h2>
         {participantsOpen && <TripParticipants trip = {trip} user = {props.user} ></TripParticipants>}
         <div>

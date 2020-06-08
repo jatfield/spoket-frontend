@@ -1,6 +1,7 @@
 .trip_riders__participant {
   display: grid;
-  grid-template-columns: 5rem 1fr 2rem;
+  grid-template-columns: 5rem 1fr 1fr 2rem;
+  grid-auto-rows: 1fr;
   align-items: center;
 }
 
@@ -19,6 +20,10 @@
 
 .participant__button {
   cursor: pointer;
+}
+
+.participant__spokes {
+  grid-column: span 4;
 }
 
 .participant__button--denied {

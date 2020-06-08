@@ -39,7 +39,7 @@ const Spoke = (props) => {
           <div className="spoke__image_data">
             <div className="spoke__image_data_status">
               {props.spoke.verifiedAt ? 'Látogatás elfogadva' : 'Látogatás érvénytelen'}<br />
-              <DateSpokeIcon /> {dayjs(props.spoke.updatedAt).format('YYYY.MM.DD HH:mm')} <br/>
+              <DateSpokeIcon /> {dayjs(props.spoke.updatedAt).format('YYYY.MM.DD. HH:mm')} <br/>
             </div>
             {props.spoke.distance &&<div className="spoke__image_data_distance"><DistanceSpokeIcon /> {(Math.round(props.spoke.distance) * 100)/100} m</div>}
           </div>
