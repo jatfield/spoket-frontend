@@ -7,7 +7,8 @@ const FacebookButton = (props) => {
   const faceBookLogin = () => {
     window.FB.login((response) => {         
       response.status === "connected" && props.login(response.authResponse.userID, response.authResponse.expiresIn, response.authResponse.accessToken);
-    }, {scope: 'email'});
+    }, {scope: 'email', 
+    return_scopes: true});
   };
 
   const faceBookLogout = () => {

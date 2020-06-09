@@ -22,11 +22,11 @@ const Participant = (props) => {
   return (
   <div className="trip_riders__participant">
     <div className="participant__image">
-      <img src = {props.participant.fbData.picture.data.is_silhouette ? silhouette : props.participant.fbData.picture.data.url} alt = {props.participant.fbData.name}/>
+    {props.participant.fbData.picture ? <img src = {props.participant.fbData.picture.data.is_silhouette ? silhouette : props.participant.fbData.picture.data.url} alt = {props.participant.fbData.name}/> : <p>Nem engedélyezett adatlekérés</p>}
     </div>
-    <div className="participant__name">
-      {props.participant.fbData.name}({props.participant.fbData.email})
-    </div>
+    {props.participant.fbData && <div className="participant__name">
+      {props.participant.fbData.name} ({props.participant.fbData.email})
+    </div>}
     <div className="participant__applied_at">
       {dayjs(props.participant.wheel.createdAt).format('YYYY.MM.DD. HH:mm')}
     </div>

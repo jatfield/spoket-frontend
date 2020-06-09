@@ -28,9 +28,11 @@ const ParticipantSpokes = (props) => {
   }, [sendRequest, props.user, props.wheel]);
 
   const handleSpokeModalClick = (event) => {
-    setSpot(JSON.parse(event.target.getAttribute('data-spot')));
-    setSpoke(JSON.parse(event.target.getAttribute('data-spoke')));
-    setSpokeModalShow(true);
+    if (event.target.getAttribute('data-spot')) {
+      setSpot(JSON.parse(event.target.getAttribute('data-spot')));
+      setSpoke(JSON.parse(event.target.getAttribute('data-spoke')));
+      setSpokeModalShow(true);
+    }
   };
 
   const hideSpokeModal = () => {
