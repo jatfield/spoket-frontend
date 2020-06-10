@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import {useFetch} from '../../hooks/request-hook'
 import { NavLink } from 'react-router-dom';
 
-import Spots from '../components/Spots';
+import WheelSpots from '../components/WheelSpots';
 import TripMap from '../../trips/components/TripMap';
 import './Wheels.css';
 import LoadingSpinner from '../../shared/components/LoadingSpinner';
@@ -45,7 +45,7 @@ const Wheels = (props) => {
             <div className="wheel__tripdata__map"><TripMap trip = {wheel.trip} /></div>
           </div>
           {expandedWheels.find(w => w === wheel._id) && 
-            <Spots wheel = {wheel} user = {props.user}/>}
+            <WheelSpots wheel = {wheel} spots = {wheel.trip.spots} user = {props.user}/>}
         </div>
         )}
       </div>}

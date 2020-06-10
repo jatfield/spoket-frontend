@@ -60,3 +60,11 @@ button {
   border: 1px solid black;
   cursor: pointer;
 }
+
+h2 {
+  background-color: #313638;
+  color: #e8e9eb;
+}
+h1 {
+  text-align: center;
+}

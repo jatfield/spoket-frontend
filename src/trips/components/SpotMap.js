@@ -44,7 +44,9 @@ const SpotMap = (props) => {
         />
       </Map>
     </div>
-    <a href={googleDirectionsLink} target ="_new">Google útvonalterv</a>
+    <div className="spot__directions">
+      <button><a href={googleDirectionsLink} target ="_new">Google útvonalterv</a></button>
+    </div>
   </div>
   )
 

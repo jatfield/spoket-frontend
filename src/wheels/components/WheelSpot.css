@@ -1,8 +1,8 @@
-.verified_spoke_state_icon {
+.verified_spoke {
   fill: green;
 }
 
-.unverified_spoke_state_icon {
+.unverified_spoke {
   fill: yellow;
 }
 

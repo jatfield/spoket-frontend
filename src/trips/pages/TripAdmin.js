@@ -5,10 +5,12 @@ import { useEffect } from 'react';
 import { useFetch } from '../../hooks/request-hook';
 import LoadingSpinner from '../../shared/components/LoadingSpinner';
 import { useParams } from 'react-router-dom';
+import SpotList from '../components/SpotList';
 
 const TripAdmin = (props) => {
   const {isLoading, sendRequest} = useFetch();
   const [participantsOpen, setParticipantsOpen] = useState(false);
+  const [spotsOpen, setSpotsOpen] = useState(false);
   const [trip, setTrip] = useState();
 
   const tripId = useParams().tripId;
@@ -26,19 +28,20 @@ const TripAdmin = (props) => {
   const handleParticipantsClick = () => {
     participantsOpen ? setParticipantsOpen(false) : setParticipantsOpen(true);
   };
+  const handleSpotsClick = () => {
+    spotsOpen ? setSpotsOpen(false) : setSpotsOpen(true);
+  };
 
   return (
     <React.Fragment>
       {isLoading && !trip && <LoadingSpinner />}
-      {!isLoading && trip && <div className = "tripadmin">
+      {!isLoading && trip && 
+      <div className = "tripadmin">
         <h1>{trip.name}</h1>
         <h2 onClick = {handleParticipantsClick}>Résztvevők</h2>
         {participantsOpen && <TripParticipants trip = {trip} user = {props.user} ></TripParticipants>}
-        <div>
-          lebontható spotlista szerkesztéshez
-          résztvevők listája utolsó teljesített pontokkal, teljesített pontok sorrendjében
-          jelentkezők listája
-        </div>
+        <h2 onClick = {handleSpotsClick}>Pontok</h2>
+        {spotsOpen && <SpotList trip = {trip} />}
       </div>}
     </React.Fragment>
   )

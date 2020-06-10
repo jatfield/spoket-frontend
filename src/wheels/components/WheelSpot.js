@@ -6,16 +6,14 @@ import Modal from '../../shared/components/Modal';
 import LoadingSpinner from '../../shared/components/LoadingSpinner';
 import SpotMap from '../../trips/components/SpotMap';
 import Spoke from './Spoke';
-import { ReactComponent as AddSpokeIcon } from '../../shared/images/add_location-24px.svg';
+import { ReactComponent as AddSpokeIcon } from '../../shared/images/add_location_alt-24px.svg';
 import { ReactComponent as EditSpokeIcon } from '../../shared/images/edit_location-24px.svg';
-import { ReactComponent as UnVerifiedSpokeState } from '../../shared/images/not_listed_location-24px.svg';
-import { ReactComponent as VerifiedSpokeState } from '../../shared/images/place-24px.svg';
 import { ReactComponent as ShowSpotIcon } from '../../shared/images/map-24px.svg';
-import './Spot.css'
+import './WheelSpot.css'
 import ErrorResponse from '../../shared/components/ErrorResponse';
 import { useEffect } from 'react';
 
-const Spot = (props) => {
+const WheelSpot = (props) => {
 
   const {errorResponse, clearError, isLoading, sendRequest} = useFetch();
   const [spoke, setSpoke] = useState();
@@ -112,8 +110,7 @@ const Spot = (props) => {
           <ShowSpotIcon onClick = {spotClickHandler} transform = "scale(1.5)" className = "spot_icon--clickable" />
           {spoke ? 
           <div className="wheel_spot__spoke_controls">
-            {<EditSpokeIcon onClick = {spokeClickHandler} className = "spot_icon--clickable" transform = "scale(1.5)"/>}
-            {spoke.verifiedAt ? <VerifiedSpokeState className = "verified_spoke_state_icon" transform = "scale(1.5)"/> : <UnVerifiedSpokeState className = "unverified_spoke_state_icon" transform = "scale(1.5)"/> }
+            {<EditSpokeIcon onClick = {spokeClickHandler} className = {`spot_icon--clickable ${spoke.verifiedAt ? "verified_spoke" : "unverified_spoke"}`} transform = "scale(1.5)"/>}
           </div> : 
           <AddSpokeIcon onClick = {spokeClickHandler} className = "spot_icon--clickable" transform = "scale(1.5)"/>}
         </div> 
@@ -123,4 +120,4 @@ const Spot = (props) => {
 
 };
 
-export default Spot;
+export default WheelSpot;
