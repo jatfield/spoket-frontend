@@ -28,7 +28,7 @@ const Participant = (props) => {
       {props.participant.fbData.name} ({props.participant.fbData.email})
     </div>}
     <div className="participant__applied_at">
-      {dayjs(props.participant.wheel.createdAt).format('YYYY.MM.DD. HH:mm')}
+      Jelentkezett: {dayjs(props.participant.wheel.createdAt).format('YYYY.MM.DD. HH:mm')}
     </div>
     {props.participant.wheel.spokes && 
     <div className="participant__spokes">

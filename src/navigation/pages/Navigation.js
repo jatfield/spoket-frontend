@@ -34,10 +34,10 @@ const Navigation = (props) => {
           {props.user && 
           <React.Fragment>
             <li>
-              <NavLink to="/trips">Kalandok</NavLink>
+              <NavLink to="/trips" activeClassName = "navlink--current">Kalandok</NavLink>
             </li>
             <li>
-              <NavLink to="/wheels">Kerekek</NavLink>
+              <NavLink to="/wheels" activeClassName = "navlink--current">Kerekek</NavLink>
             </li>
           </React.Fragment>}
           <li onClick = {handleLoginModal}>

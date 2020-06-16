@@ -25,3 +25,9 @@
   text-decoration: none;
   color:black;
 }
+.navigation__container li a.navlink--current {
+  text-decoration: none;
+  color:#f09d51;
+  text-shadow: black 2px 1px 1px;
+  font-size: 120%;
+}

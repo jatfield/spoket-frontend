@@ -16,9 +16,6 @@ function App() {
   
   if (user) {    
     routes = (<Switch> {/*so it stops after picking a route*/} 
-      <Route path = "/" exact>
-        <Wheels user = {user}/>
-      </Route>
       <Route path = "/wheels" >
         <Wheels user = {user}/>
       </Route>
@@ -31,18 +28,18 @@ function App() {
       <Route path = "/tripadmin/:tripId">
         <TripAdmin user = {user} />
       </Route>   
-      <Redirect to="/" />
+      <Redirect to="/wheels" />
     </Switch>);
    } else { 
     routes = (
     <Switch>    
-      <Route path = "/" exact>
+      <Route path = "/trips" exact>
         <TripsList />
       </Route>
       <Route path = "/pp" >
         <PrivacyPolicy/>
       </Route>
-      <Redirect to="/" />
+      <Redirect to="/trips" />
     </Switch>);
    }
   return (

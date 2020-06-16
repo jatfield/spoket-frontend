@@ -33,3 +33,7 @@
 .participant__button--approved {
   fill: green;
 }
+
+.participant__spokes h3 {
+  cursor: pointer;
+}

@@ -50,7 +50,7 @@ const ParticipantSpokes = (props) => {
       {!isLoading && spokes && <div className = 'participant__spokes'>
         {spokes.map ((spoke) => 
         <div className = 'participant__spoke' onClick = {handleSpokeModalClick} key = {spoke._id} data-spot = {JSON.stringify(spoke.spot)} data-spoke = {JSON.stringify(spoke)}>
-            {spoke.spot.name} {dayjs(spoke.verifiedAt).format('YYYY.MM.DD. HH:mm')}</div>)}
+            {spoke.spot.name} ({dayjs(spoke.verifiedAt).format('YYYY.MM.DD. HH:mm')})</div>)}
         </div>
       }
     </React.Fragment>

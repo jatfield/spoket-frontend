@@ -6,6 +6,7 @@ import { useFetch } from '../../hooks/request-hook';
 import LoadingSpinner from '../../shared/components/LoadingSpinner';
 import { useParams } from 'react-router-dom';
 import SpotList from '../components/SpotList';
+import './TripAdmin.css'
 
 const TripAdmin = (props) => {
   const {isLoading, sendRequest} = useFetch();
