@@ -53,6 +53,7 @@ const TripParticipants = (props) => {
           <h4>Jelentkezők:</h4>
           {riders.applicants.length && riders.applicants.map((p) => 
             <Participant 
+              trip = {props.trip}
               participant = {p} 
               key = {p._id} 
               approveButtonHandler = {approveButtonHandler} 

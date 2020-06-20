@@ -25,18 +25,18 @@ const Participant = (props) => {
     {props.participant.fbData.picture ? <img src = {props.participant.fbData.picture.data.is_silhouette ? silhouette : props.participant.fbData.picture.data.url} alt = {props.participant.fbData.name}/> : <p>Nem engedélyezett adatlekérés</p>}
     </div>
     {props.participant.fbData && <div className="participant__name">
-      {props.participant.fbData.name} ({props.participant.fbData.email})
+      {props.participant.fbData.name} ({props.participant.email})
     </div>}
     <div className="participant__applied_at">
       Jelentkezett: {dayjs(props.participant.wheel.createdAt).format('YYYY.MM.DD. HH:mm')}
     </div>
+    {props.role === 'applicant' && <div onClick = {tickHandler}>
+      {props.ticked ? <Approved className= "participant__button participant__button--approved"/> : <Denied className = "participant__button participant__button--denied"/> }
+    </div>}
     {props.participant.wheel.spokes && 
     <div className="participant__spokes">
       <h3 onClick = {handleSpokesOpen}>{props.participant.wheel.spokes.length}/{props.trip.spots.length}</h3>
       {spokesOpen && <ParticipantSpokes wheel = {props.participant.wheel} user = {props.user} />}
-    </div>}
-    {props.role === 'applicant' && <div onClick = {tickHandler}>
-      {props.ticked ? <Approved className= "participant__button participant__button--approved"/> : <Denied className = "participant__button participant__button--denied"/> }
     </div>}
   </div>);
 };

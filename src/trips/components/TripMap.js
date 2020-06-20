@@ -12,14 +12,14 @@ const TripMap = (props) => {
       attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     />
     {trip.spots.map((spot) =>
-      <Marker  key={spot.location.lat + spot.location.lng}
+      <Marker  key={`${spot.location.lat}${spot.location.lng}`}
         position={[
           spot.location.lat,
           spot.location.lng
         ]} />
     )} 
     {trip.spots.map((spot) =>
-      <Polyline key={spot.location.lat + spot.location.lng + trip.origin.lng} 
+      <Polyline key={`${spot.location.lat}${spot.location.lng}${trip.origin.lng}`} 
         positions = {[[spot.location.lat, spot.location.lng],[trip.origin.lat, trip.origin.lng]]} 
         weight = {2} color = 'black' opacity = '0.3'/>
     )}

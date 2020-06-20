@@ -9,7 +9,7 @@ const SpokeMap = (props) => {
   const spokeCoords = {lat: props.spoke.location.lat, lng: props.spoke.location.lng};
   const mapRef = useRef();
 
-  const zoomLevel = props.spoke.distance > 1000 ? Math.floor(8 + 70000 / props.spoke.distance) : 14;
+  const zoomLevel = props.spoke.distance > 1400 ? Math.floor(8 + 70000 / props.spoke.distance) : 14;
 
   useEffect (() => {
     //console.log(mapRef.current);
