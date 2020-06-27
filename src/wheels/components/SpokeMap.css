@@ -2,3 +2,7 @@
   width: 20em;
   height: 15rem;
 }
+
+.spoke_map__spoke_marker {
+  fill: green;
+}

@@ -5,15 +5,21 @@
 .wheel {
   display: grid;
   grid-template-columns: 12rem 2fr;
+  grid-template-rows: 4rem 12rem auto;
 }
 
 .wheel__tripdata {
   display: grid;
 }
+.wheel__open {
+  fill: white;
+}
+
 
 .wheel h2 {
   cursor: pointer;
   grid-column: span 2;
+  margin-top: 0;
 }
 
 .wheel__tripdata__map {
@@ -27,8 +33,14 @@
 
 .wheel__spots {
   display: grid;
+  grid-column: 2;
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   gap: 1rem 0.5rem;
+}
+
+.wheel__results {
+  display: grid;
+  grid-column: 1;
 }
 
 @media screen and (max-width: 600px) {

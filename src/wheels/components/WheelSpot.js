@@ -7,7 +7,8 @@ import LoadingSpinner from '../../shared/components/LoadingSpinner';
 import SpotMap from '../../trips/components/SpotMap';
 import Spoke from './Spoke';
 import { ReactComponent as AddSpokeIcon } from '../../shared/images/add_location_alt-24px.svg';
-import { ReactComponent as EditSpokeIcon } from '../../shared/images/edit_location-24px.svg';
+import { ReactComponent as MissedSpokeIcon } from '../../shared/images/not_listed_location-24px.svg';
+import { ReactComponent as CheckedSpokeIcon } from '../../shared/images/where_to_vote-24px.svg';
 import { ReactComponent as ShowSpotIcon } from '../../shared/images/map-24px.svg';
 import './WheelSpot.css'
 import ErrorResponse from '../../shared/components/ErrorResponse';
@@ -104,13 +105,15 @@ const WheelSpot = (props) => {
       <Modal show = {spotMapModalShow} onCancel = {hideSpotMapModal} title = {props.spot.name} >
         <SpotMap spot = {clickedSpot} user = {props.user} trip = {props.wheel.trip}/>
       </Modal>
-      <div className ="wheel__spot" key = {props.spot._id}>
+      <div className ={`wheel__spot ${spoke && spoke.verifiedAt ? 'spoke--verified' : 'spoke--unverified'}`} key = {props.spot._id}>
         <h3 onClick = {spotClickHandler} className="wheel_spot__name">{props.spot.name}</h3>
         <div className="wheel_spot__icons">
           <ShowSpotIcon onClick = {spotClickHandler} transform = "scale(1.5)" className = "spot_icon--clickable" />
           {spoke ? 
           <div className="wheel_spot__spoke_controls">
-            {<EditSpokeIcon onClick = {spokeClickHandler} className = {`spot_icon--clickable ${spoke.verifiedAt ? "verified_spoke" : "unverified_spoke"}`} transform = "scale(1.5)"/>}
+            {spoke.verifiedAt ? 
+              <CheckedSpokeIcon onClick = {spokeClickHandler} className = {`spot_icon--clickable verified_spoke`} transform = "scale(1.5)"/> :
+              <MissedSpokeIcon onClick = {spokeClickHandler} className = {`spot_icon--clickable unverified_spoke`} transform = "scale(1.5)"/>}
           </div> : 
           <AddSpokeIcon onClick = {spokeClickHandler} className = "spot_icon--clickable" transform = "scale(1.5)"/>}
         </div> 

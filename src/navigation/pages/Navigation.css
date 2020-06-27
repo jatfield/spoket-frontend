@@ -1,3 +1,7 @@
+.navigation__container {
+  grid-column: 2;
+}
+
 .navigation__container ul {
   margin: 0rem;
   padding: 0rem;

@@ -25,7 +25,9 @@ const FacebookButton = (props) => {
 
   useEffect(() => {
     if (fbReady && window.FB) {
-      window.FB.getLoginStatus();    
+      window.FB.getLoginStatus((response) => {
+      });
+      
     }
   }, [fbReady, props]);
 

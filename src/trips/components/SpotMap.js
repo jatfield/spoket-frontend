@@ -3,6 +3,7 @@ import {useFetch} from '../../hooks/request-hook'
 import { Map, Marker, TileLayer } from "react-leaflet";
 
 import './SpotMap.css';
+import { Link } from 'react-router-dom';
 
 const SpotMap = (props) => {
   
@@ -28,7 +29,9 @@ const SpotMap = (props) => {
   <div className="spot">
     {spotImageUrl && 
       <div className="spot__image"> 
-        <img src = {spotImageUrl} alt = {props.spot.name}/>
+        <a href={spotImageUrl} target = "_blank" rel="noopener noreferrer">
+          <img src = {spotImageUrl} alt = {props.spot.name}/>
+          </a>
       </div>}
     <div className="spot__map">
       <Map center={[spot.location.lat, spot.location.lng]} zoom={15}>

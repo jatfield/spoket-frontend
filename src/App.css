@@ -12,12 +12,12 @@
   width: 100vw;
   
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 10fr 1fr;
+  grid-template-rows: 1fr 1fr 10fr;
   /* elnevezi a sorokat is "header-start / header-end": header kezdetétől a végéig*/
   grid-template-areas:  
     "header"
-    "main"
-    "navbar";
+    "navbar"
+    "main";
   background-color: #e8e9eb;
 }
 
@@ -39,6 +39,7 @@
   background-color: #e0dfd5;
   justify-items: center;
   border-top: 1rem solid #313638;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 .app__main {

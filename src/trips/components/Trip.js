@@ -4,6 +4,7 @@ import './Trip.css'
 import { useFetch } from '../../hooks/request-hook';
 import TripOwner from './TripOwner';
 import LoadingSpinner from '../../shared/components/LoadingSpinner';
+import TripDescription from './TripDescription';
 
 const Trip = (props) => {
   const trip = props.trip;
@@ -43,7 +44,6 @@ const Trip = (props) => {
         <TripMap trip = {trip} />
       </div>
       <div className = "trip__data">
-        <div className="trip__data__description">{trip.description}</div>
         <div className="trip__data__spotnumber">Küllők: {trip.spots.length}</div>
         <div className="trip__data__participation">Részvétel: {participation[trip.participation]}</div>
         {props.user && !role && !applied &&
@@ -57,6 +57,7 @@ const Trip = (props) => {
         </div>
         {props.user && role === 'creator' &&
           <TripOwner trip = {trip} user = {props.user} applied = {wheels.applied} />}
+        <TripDescription descriptio = {trip.description} />
       </div>
     </React.Fragment>
   );

@@ -7,8 +7,8 @@ const TripOwner = (props) => {
     <React.Fragment>
       <div className="trip__tripowner_data">
         <div className="tripowner_data__toapprove">Jelentkezők : {props.applied.length}</div>
+      <NavLink to = {`/tripadmin/${props.trip._id}`}><button>Túra kezelése</button></NavLink>
       </div>
-      <NavLink to = {`/tripadmin/${props.trip._id}`}><button>Kaland kezelése</button></NavLink>
     </React.Fragment>
   )
 

@@ -50,6 +50,7 @@ function App() {
         <Router>    
           <div className = "app__navbar">
             <Navigation user = {user} login = {login} logout = {logout} />
+            {user && <b>{user.email}</b>}
           </div>  
           <div className = "app__main">
             {routes}

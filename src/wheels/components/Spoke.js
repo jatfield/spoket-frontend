@@ -6,7 +6,6 @@ import dayjs from 'dayjs';
 import { ReactComponent as DateSpokeIcon } from '../../shared/images/today-24px.svg';
 import { ReactComponent as DistanceSpokeIcon } from '../../shared/images/settings_ethernet-24px.svg';
 
-
 const Spoke = (props) => {
 
   const {isLoading, sendRequest} = useFetch();
@@ -31,10 +30,13 @@ const Spoke = (props) => {
 
   return (
     <div className="wheel__spoke">
+      {!isLoading && !props.spoke && <h3>Nincs rögzített látogatás</h3>}
       {!isLoading && spokeImageUrl && 
         <div className="spoke__data">
           <div className="spoke__image">
+          <a href={spokeImageUrl} target = "_blank" rel="noopener noreferrer">
             <img src = {spokeImageUrl} alt = {props.spot.name} width = {150}/>
+          </a>
           </div>
           <div className="spoke__image_data">
             <div className="spoke__image_data_status">

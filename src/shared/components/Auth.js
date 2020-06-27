@@ -20,7 +20,8 @@ const Auth = (props) => {
     if (errorResponse) {
       alert(errorResponse)
     } else {
-      props.login(true, fbId, expiry, fbToken, responseData.token, responseData.rider._id);
+      console.log(responseData)
+      props.login(true, fbId, expiry, fbToken, responseData.token, responseData.rider._id, responseData.rider.email);
       props.onComplete();
     }
   };

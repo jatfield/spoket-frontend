@@ -1,3 +1,11 @@
+.spoke--unverified {
+  background: linear-gradient(45deg, rgba(255,255,255,0) 87%, rgba(255,255,0,0.4) 87%);
+}
+
+.spoke--verified {
+  background: linear-gradient(45deg, rgba(255,255,255,0) 87%, rgba(0,255,0,0.4) 87%);
+}
+
 .verified_spoke {
   fill: green;
 }
