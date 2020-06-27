@@ -3,7 +3,6 @@ import {useFetch} from '../../hooks/request-hook'
 import { Map, Marker, TileLayer } from "react-leaflet";
 
 import './SpotMap.css';
-import { Link } from 'react-router-dom';
 
 const SpotMap = (props) => {
   

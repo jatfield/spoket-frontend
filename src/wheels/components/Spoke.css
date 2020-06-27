@@ -7,9 +7,15 @@
   grid-template-columns: 12rem auto;
 }
 
+.spoke__image {
+  margin: 0 auto;
+}
+
 .spoke__image img {
   image-orientation: from-image;
-  width: 12rem;
+  object-fit: cover;
+  max-height: 12rem;
+  max-width: 12rem;
 }
 
 .spoke__uploadlink {

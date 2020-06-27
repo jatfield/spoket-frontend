@@ -3,9 +3,14 @@
   height: 15rem;
 }
 
+.spot__image {
+  text-align: center;
+}
+
 .spot__image img {
-  width: 20em;
-  width: 20rem;
+  object-fit: cover;
+  max-height: 20rem;
+  max-width: 20rem;
 }
 
 .spot__directions {

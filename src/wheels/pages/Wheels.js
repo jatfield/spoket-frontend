@@ -55,9 +55,9 @@ const Wheels = (props) => {
           {expandedWheels.find(w => w === wheel._id) && 
             <div className="wheel__results">
               <h3>Teljesített pontok: </h3>
-              {wheel.spokes.length}/{wheel.spokes.filter((s) => s.verifiedAt).length}
+              {wheel.trip.spots.length}/{wheel.spokes.filter((s) => s.verifiedAt).length}
               <h3>Meglátogatott pontok: </h3>
-              {wheel.trip.spots.length}
+              {wheel.spokes.length}
               <h3>Jelmagyarázat: </h3>
               <ShowSpotIcon />Pontot mutat<br />
               <AddSpokeIcon />Látogatás <br />

@@ -52,6 +52,4 @@
 .wheel {
   grid-template-columns: 1fr;
 }
-.wheel h2 {
-  grid-column: 1;}
 }

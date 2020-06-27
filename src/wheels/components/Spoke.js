@@ -35,7 +35,7 @@ const Spoke = (props) => {
         <div className="spoke__data">
           <div className="spoke__image">
           <a href={spokeImageUrl} target = "_blank" rel="noopener noreferrer">
-            <img src = {spokeImageUrl} alt = {props.spot.name} width = {150}/>
+            <img src = {spokeImageUrl} alt = {props.spot.name}/>
           </a>
           </div>
           <div className="spoke__image_data">

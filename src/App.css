@@ -39,7 +39,6 @@
   background-color: #e0dfd5;
   justify-items: center;
   border-top: 1rem solid #313638;
-  grid-template-columns: 1fr 1fr 1fr;
 }
 
 .app__main {

@@ -46,11 +46,11 @@ function App() {
       <div className = "app">
         <div className = "app__header">
           <h1>kerékkalandok.hu</h1>
+          {user && <b>{user.email}</b>}
         </div>
         <Router>    
           <div className = "app__navbar">
             <Navigation user = {user} login = {login} logout = {logout} />
-            {user && <b>{user.email}</b>}
           </div>  
           <div className = "app__main">
             {routes}
