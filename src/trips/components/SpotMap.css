@@ -9,7 +9,7 @@
 
 .spot__image img {
   object-fit: cover;
-  max-height: 20rem;
+  max-height: 15rem;
   max-width: 20rem;
 }
 
