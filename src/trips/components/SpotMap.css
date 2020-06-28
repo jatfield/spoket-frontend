@@ -1,5 +1,5 @@
 .spot__map {
-  width: 20em;
+  width: 18rem;
   height: 15rem;
 }
 
@@ -9,8 +9,8 @@
 
 .spot__image img {
   object-fit: cover;
-  max-height: 15rem;
-  max-width: 20rem;
+  max-height: 14rem;
+  max-width: 18rem;
 }
 
 .spot__directions {

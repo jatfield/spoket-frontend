@@ -1,8 +1,8 @@
 .modal__container {
   display: grid;
   grid-template-rows:  minmax(min-content, max-content) auto;
-  position: fixed;
-  width: 20rem;
+  position: absolute;
+  width: 18rem;
   top: 5rem;
   right: calc(50% - 10rem);
   background-color: white;
