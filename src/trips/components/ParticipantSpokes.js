@@ -5,6 +5,7 @@ import { useState } from 'react';
 import LoadingSpinner from '../../shared/components/LoadingSpinner';
 import Modal from '../../shared/components/Modal';
 import Spoke from '../../wheels/components/Spoke';
+import './ParticipantSpokes.css'
 
 const ParticipantSpokes = (props) => {
 
@@ -47,11 +48,11 @@ const ParticipantSpokes = (props) => {
         </Modal>
       }
       {isLoading && <LoadingSpinner />}
-      {!isLoading && spokes && <div className = 'participant__spokes'>
+      {!isLoading && spokes && <ul className = 'participant__spokes'>
         {spokes.map ((spoke) => 
-        <div className = 'participant__spoke' onClick = {handleSpokeModalClick} key = {spoke._id} data-spot = {JSON.stringify(spoke.spot)} data-spoke = {JSON.stringify(spoke)}>
-            {spoke.spot.name} ({dayjs(spoke.verifiedAt).format('YYYY.MM.DD. HH:mm')})</div>)}
-        </div>
+        <li className = 'participant__spoke' onClick = {handleSpokeModalClick} key = {spoke._id} data-spot = {JSON.stringify(spoke.spot)} data-spoke = {JSON.stringify(spoke)}>
+            {spoke.spot.name} ({dayjs(spoke.verifiedAt).format('YYYY.MM.DD. HH:mm')})</li>)}
+        </ul>
       }
     </React.Fragment>
   );
