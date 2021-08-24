@@ -7,6 +7,7 @@ import TripsList from './trips/pages/TripsList';
 import Wheels from './wheels/pages/Wheels';
 import Navigation from './navigation/pages/Navigation';
 import PrivacyPolicy from './PrivacyPolicy';
+import PasswordReset from './PasswordReset';
 import TripAdmin from './trips/pages/TripAdmin';
 
 function App() {
@@ -38,6 +39,9 @@ function App() {
       </Route>
       <Route path = "/pp" >
         <PrivacyPolicy/>
+      </Route>
+      <Route path = "/passwordreset" >
+        <PasswordReset/>
       </Route>
       <Redirect to="/trips" />
     </Switch>);

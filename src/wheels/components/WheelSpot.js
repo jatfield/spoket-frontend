@@ -88,15 +88,11 @@ const WheelSpot = (props) => {
     setSpokeModalShow(false);
   };
 
-  const errorClickHandler = () => {
-    clearError();
-  };
-
   return (
     <React.Fragment>
       <Modal show = {imageUploadShow} onCancel = {hideImageUploadModal} title = {"Látogatás fotójának feltöltése"}>
         <ImageUpload onInput = {onImageInput} onSubmit = {handleUploadButton} />
-        {errorResponse && <ErrorResponse errorClickHandler = {errorClickHandler} error = {errorResponse} />}
+        {errorResponse && <ErrorResponse errorClickHandler = {clearError} error = {errorResponse} />}
         {isLoading && <LoadingSpinner />}
       </Modal>
       <Modal show = {spokeModalShow} onCancel = {hideSpokeModal} title = {`${props.spot.name} - látogatás`}>

@@ -13,21 +13,20 @@ const Navigation = (props) => {
   };
 
   const handleLoginModal = () => {
-    setShowLogin(true);
+    if (props.user) {
+      props.logout()
+    } else {
+      setShowLogin(true);
+    }
   };
 
   return (
     <React.Fragment>
       <Modal show = {showLogin} onCancel = {hideLoginModal} title = "Azonosítás">
-        <p>Az alkalmazás Facebook bejelentkezést használ, személyes adatot nem tárol. 
-          <hr />
-          Megőrzésre kerülő adatok: opcionálisan megadható becenév, motortípus, valamint feltöltött képek és azok metaadatai, továbbá az alkalmazás használata során keletkezett adatok.
-          <hr />
-          Az alkalmazásban tárolt adatok az alkalmazás Facebook profilról való leválasztása esetén törlésre kerülnek.
-          <hr />
+        <Auth user = {props.user} login = {props.login} onComplete = {hideLoginModal} />
+        <p>
           <NavLink to="/pp" onClick = {hideLoginModal}>Részletes adatvédelmi és felhasználási információk</NavLink>
         </p>
-        <Auth user = {props.user} login = {props.login} logout = {props.logout} onComplete = {hideLoginModal} />
       </Modal>
       <div className="navigation__container">
         <ul>
@@ -41,7 +40,7 @@ const Navigation = (props) => {
             </li>
           </React.Fragment>}
           <li onClick = {handleLoginModal}>
-            {props.user ? `Kijelentkezés` : "Bejelentkezés"}
+            {props.user ? "Kijelentkezés" : "Bejelentkezés"}
           </li>
         </ul> 
       </div>

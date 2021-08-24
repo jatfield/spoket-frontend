@@ -4,9 +4,9 @@ export const useAuth = () => {
 
   const [user, setUser] = useState(false);
 
-  const login = useCallback((isLoggedIn, fbId, fbExpiresAt, fbToken, spokeToken, spoketId, email) => {
-    localStorage.setItem('userData', JSON.stringify({isLoggedIn, fbId, fbExpiresAt, fbToken, spokeToken, spoketId, email}));
-    setUser({isLoggedIn, fbId, fbExpiresAt, fbToken, spokeToken, spoketId, email});
+  const login = useCallback((isLoggedIn, spokeToken, spoketId, email) => {
+    localStorage.setItem('userData', JSON.stringify({isLoggedIn, spokeToken, spoketId, email}));
+    setUser({isLoggedIn, spokeToken, spoketId, email});
   }, []);
 
   const logout = useCallback(() => {
@@ -16,9 +16,10 @@ export const useAuth = () => {
 
   useEffect(() => {
     const storedData = JSON.parse(localStorage.getItem('userData'));
-    (storedData && new Date(storedData.fbExpiresAt) > new Date()) ? login(true, storedData.fbId, storedData.fbExpiresAt, storedData.fbToken, storedData.spokeToken, storedData.spoketId, storedData.email) : logout();
-  }, [login, logout])
-
+    if (storedData && storedData.email) login(true, storedData.spokeToken, storedData.spoketId, storedData.email);
+  }, [login])
+  
+/* 
   useEffect (() => {
     let logoutTimer;
     if (user && user.fbExpiresAt && new Date(user.fbExpiresAt) > new Date()) {
@@ -26,7 +27,7 @@ export const useAuth = () => {
     } else {
       clearTimeout(logoutTimer);
     }
-  }, [logout, user]);
+  }, [logout, user]); */
 
   return {user, login, logout}
 }

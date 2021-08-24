@@ -57,7 +57,7 @@ const Trip = (props) => {
         </div>
         {props.user && role === 'creator' &&
           <TripOwner trip = {trip} user = {props.user} applied = {wheels.applied} />}
-        <TripDescription descriptio = {trip.description} />
+        <TripDescription description = {trip.description} />
       </div>
     </React.Fragment>
   );
