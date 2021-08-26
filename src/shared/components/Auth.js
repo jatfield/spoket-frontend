@@ -10,6 +10,7 @@ const Auth = (props) => {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [loginMode, setLoginMode] = useState(true);
+  const [mailSuccess, setMailSuccess] = useState(false);
 
   const handleLogin = async (event) => {
     event.preventDefault()
@@ -38,7 +39,8 @@ const Auth = (props) => {
     if (email) {
       clearError()
       try {
-        await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/riders/getresettoken/${email}`, 'GET');  
+        const responseData = await sendRequest(`${process.env.REACT_APP_API_SERVER}/api/riders/getresettoken/${email}`, 'GET');  
+        setMailSuccess(responseData.mailSuccess);
       } catch (error) {
         console.log(error); 
       }
@@ -52,8 +54,8 @@ const Auth = (props) => {
 
   return (
     <form>
-      {errorResponse && errorResponse === "Login failed" && 
-        <ErrorResponse errorClickHandler = {clearError} error = "Hibás bejelentkezési adatok">
+      {errorResponse &&
+        <ErrorResponse errorClickHandler = {clearError} error = {errorResponse}>
         </ErrorResponse>}
       <label>E-mail cím</label><br />
       <input type= "email" name = "email" onChange = {handleEmailChange} value = {email}></input><br />
@@ -62,6 +64,7 @@ const Auth = (props) => {
       {loginMode ? <button onClick = {handleLogin}>Bejelentkezés</button> : <button onClick = {handlePasswordRequest}>Küldés</button> }<br/>
       <span className = "login_mode_switch" onClick = {handleLoginModeClick}>{loginMode ? `Jelszóvisszaállítás` : `Bejelentkezés`}</span>
       {isLoading && <LoadingSpinner />}
+      {mailSuccess && <p className = "red">Jelszóvisszaállító e-mail elküldve</p>}
     </form>
   )
 };
