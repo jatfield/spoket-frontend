@@ -51,7 +51,8 @@ const TripParticipants = (props) => {
         </div>}
         <div className="trip_riders__participants">
           <h4>Résztvevők:</h4>
-          {riders.participants.map((p) => <Participant participant = {p} key = {p._id} trip = {props.trip} role = 'participant' user = {props.user} /> )}
+          {riders.participants.map((p) => 
+            <Participant participant = {p} key = {p._id} trip = {props.trip} role = 'participant' user = {props.user} /> )}
         </div>
         {riders.applicants.length > 0 && <div className="trip_riders__applicants">
           <h4>Jelentkezők:</h4>
