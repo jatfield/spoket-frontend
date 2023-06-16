@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {useFetch} from '../../hooks/request-hook'
-import { Map, Marker, TileLayer } from "react-leaflet";
+import { MapContainer, Marker, TileLayer } from "react-leaflet";
 
 import './SpotMap.css';
 
@@ -33,7 +33,7 @@ const SpotMap = (props) => {
           </a>
       </div>}
     <div className="spot__map">
-      <Map center={[spot.location.lat, spot.location.lng]} zoom={15}>
+      <MapContainer center={[spot.location.lat, spot.location.lng]} zoom={15}>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -44,7 +44,7 @@ const SpotMap = (props) => {
             spot.location.lng
           ]}
         />
-      </Map>
+      </MapContainer>
     </div>
     <div className="spot__directions">
       <button><a href={googleDirectionsLink} target ="_new">Google útvonalterv</a></button>

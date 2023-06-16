@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 
-import { Map, Marker, Polyline, TileLayer } from "react-leaflet";
+import { MapContainer, Marker, Polyline, TileLayer } from "react-leaflet";
 
 import './SpokeMap.css';
 
@@ -17,7 +17,7 @@ const SpokeMap = (props) => {
 
   return (
   <div className="spoke__map">
-    <Map ref = {mapRef} center={[(spokeCoords.lat + spotCoords.lat) / 2, (spokeCoords.lng + spotCoords.lng) / 2]} zoom={zoomLevel}>
+    <MapContainer ref = {mapRef} center={[(spokeCoords.lat + spotCoords.lat) / 2, (spokeCoords.lng + spotCoords.lng) / 2]} zoom={zoomLevel}>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -37,7 +37,7 @@ const SpokeMap = (props) => {
         ]}
       />}
       {!props.verified && <Polyline positions = {[[spotCoords.lat, spotCoords.lng],[spokeCoords.lat, spokeCoords.lng]]}/>}
-    </Map>
+    </MapContainer>
   </div>
   )
 
