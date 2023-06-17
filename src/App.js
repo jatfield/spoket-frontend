@@ -33,7 +33,7 @@ function App() {
   return (
       <div className = "app">
         <div className = "app__header">
-          <h1>kerékkalandok.hu</h1>
+          <h1>Óriáskerék tájtúrák</h1>
           {user && <b>{user.email}</b>}
         </div>
         <Router>    

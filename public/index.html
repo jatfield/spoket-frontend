@@ -21,25 +21,13 @@
       integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
       crossorigin=""
     />
-    <title>Kerékkalandok</title>
+    <title>Óriáskerék tájtúrák</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <div id="backdrop-hook"></div>
     <div id="modal-hook"></div>
-    <script>
-      window.fbAsyncInit = function() {
-        FB.init({
-          appId            : "%REACT_APP_FB_APPID%",
-          autoLogAppEvents : true,
-          xfbml            : true,
-          version          : 'v6.0'
-        });
-        var fbInitEvent = new Event('FBObjectReady');
-        document.dispatchEvent(fbInitEvent);
-      };
-    </script>
     <script async defer src="https://connect.facebook.net/hu_HU/sdk.js"></script>
   </body>
 </html>
