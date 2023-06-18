@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-dom';
 
 import './App.css';
 import {useAuth} from './hooks/auth-hook'
@@ -28,6 +28,7 @@ function App() {
       <Route path = "/trips" element={<TripsList />} />
       <Route path = "/pp" element={<PrivacyPolicy/>} />
       <Route path = "/passwordreset" element={<PasswordReset/>} />
+      <Route path="*" element={<Navigate replace to= "/trips" />} />
     </Routes>);
    }
   return (

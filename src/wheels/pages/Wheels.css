@@ -5,11 +5,12 @@
 .wheel {
   display: grid;
   grid-template-columns: 12rem 2fr;
-  grid-template-rows: 4rem 12rem auto;
+  /*grid-template-rows: 4rem 12rem auto;*/
 }
 
 .wheel__tripdata {
   display: grid;
+  grid-template-rows: 12rem;
 }
 .wheel__open {
   fill: white;
@@ -41,6 +42,7 @@
 .wheel__results {
   display: grid;
   grid-column: 1;
+  height: 10rem
 }
 
 @media screen and (max-width: 600px) {

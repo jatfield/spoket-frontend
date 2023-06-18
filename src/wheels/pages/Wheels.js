@@ -48,11 +48,7 @@ const Wheels = (props) => {
         <div className="wheel" key = {wheel._id} >
           <h2 onClick = {() => handleWheelClick(wheel._id)}>{wheel.trip.name} {expandedWheels.find(w => w === wheel._id) ?  <ShrinkButton  className = "wheel__open" transform = "scale(1.5)"/> : <ExpandButton className = "wheel__open" transform = "scale(1.5)"/>}</h2>
           <div className="wheel__tripdata">
-            <div className="wheel__tripdata__map"><TripMap trip = {wheel.trip} /></div>
-          </div>
-          {expandedWheels.find(w => w === wheel._id) && 
-            <WheelSpots wheel = {wheel} spots = {wheel.trip.spots} user = {props.user}/>}
-          {expandedWheels.find(w => w === wheel._id) && 
+            <div className="wheel__tripdata__map"><TripMap trip = {wheel.trip} /></div>{expandedWheels.find(w => w === wheel._id) && 
             <div className="wheel__results">
               <h3>Teljesített pontok: </h3>
               {wheel.spokes.filter((s) => s.verifiedAt).length}/{wheel.trip.spots.length}
@@ -64,6 +60,10 @@ const Wheels = (props) => {
               <p><MissedSpokeIcon />Hibás kép</p>
               <p><CheckedSpokeIcon />Elfogadott látogatás</p>
             </div>}
+          </div>
+          {expandedWheels.find(w => w === wheel._id) && 
+            <WheelSpots wheel = {wheel} spots = {wheel.trip.spots} user = {props.user}/>}
+          
         </div>
         )}
       </div>}

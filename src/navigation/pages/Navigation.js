@@ -14,7 +14,8 @@ const Navigation = (props) => {
 
   const handleLoginModal = () => {
     if (props.user) {
-      props.logout()
+      props.logout();
+      
     } else {
       setShowLogin(true);
     }
