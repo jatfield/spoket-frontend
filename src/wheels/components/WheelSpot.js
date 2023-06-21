@@ -49,6 +49,7 @@ const WheelSpot = (props) => {
   };
 
   const handleImageUploadClick = () => {
+    clearError();
     if (imageUploadShow) hideImageUploadModal();
     if (spokeModalShow) hideSpokeModal();
     setImageUploadShow(true);
@@ -60,7 +61,7 @@ const WheelSpot = (props) => {
 
   const handleUploadButton = (event) => {
     event.preventDefault();
-    uploadImg(props.wheel._id)
+    !isLoading && uploadImg(props.wheel._id)
   };
 
   const hideImageUploadModal = () => {
